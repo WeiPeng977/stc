@@ -75,7 +75,7 @@ ul{
 input[placeholder]{
     padding-left: 15px;
 	width:285px;
-	
+
 }
 .logo_search .btn{
     float: left;
@@ -92,7 +92,7 @@ input[placeholder]{
 .main{
     width: 100%;
     height: 630px;
-    background-image: url("../images/登录背景.jpg");
+    background-image: url("../images/login_background.jpg");
     overflow: hidden;
 }
 .main1{
