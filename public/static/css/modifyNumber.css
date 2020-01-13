@@ -1,0 +1,60 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    min-width: 1200px;
+}
+.w{
+    width: 1200px;
+    margin: 0 auto;
+}
+.top{
+    width: 807px;
+    height: 121px;
+    border-bottom: 1px solid #d5e5f4;
+    margin-left: 21px;
+}
+a{
+    text-decoration: none;
+}
+.center{
+    width: 100%;
+    height: 539px;
+    overflow: hidden;
+}
+.modify{
+    width: 350px;
+    height: 350px;
+    /*border: 1px solid red;*/
+    margin-top: 120px;
+    margin-left: 250px;
+}
+.modify p{
+    font-size: 14px;
+    margin-top: 40px;
+}
+.inform input{
+    border: 1px solid #dce4ff;
+    font-size: 12px;
+    width: 298px;
+    height: 38px;
+    margin-top: 20px;
+}
+
+input[placeholder]{
+    padding-left: 15px;
+}
+
+.inform .user{
+    margin-top: 30px;
+}
+.modify_btn {
+    width: 300px;
+    height: 40px;
+    margin-top: 20px;
+    background-color: #0086ff;
+    border: transparent;
+    font-size: 14px;
+    color: white;
+}

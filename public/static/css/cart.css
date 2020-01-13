@@ -1,0 +1,275 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    min-width: 1200px;
+}
+.w{
+    width: 1200px;
+    margin: 0 auto;
+}
+a{
+    text-decoration: none;
+    color: #666560;
+}
+a:hover{
+    color: red;
+}
+ul{
+    list-style: none;
+}
+
+/*主导航栏的实现*/
+.top{
+    width: 100%;
+    height: 33px;
+    background-color: #f4f4f4;
+}
+.top1 a{
+    float: left;
+    margin-left: 15px;
+    font-size: 12px;
+    line-height: 33px;
+}
+.top2 a{
+    float: right;
+    line-height: 33px;
+    margin-right: 15px;
+    font-size: 12px;
+}
+/*搜索栏的实现*/
+.search{
+    height: 60px;
+    background-color: #0086ff;
+}
+.search .left p{
+    float: left;
+    line-height: 60px;
+    font-size: 28px;
+    color: white;
+    margin-left: 16px;
+}
+.search .right{
+    float: right;
+    margin-top: 16px;
+}
+.search input[type="text"]{
+    float: left;
+    width: 249px;
+    border: none;
+    height: 28px;
+}
+.search input[type="button"]{
+    float: left;
+    width: 72px;
+    height: 28px;
+    border: none;
+    background-color: #f5f5f5;
+    font-size: 13px;
+    margin-right: 17px;
+}
+/*主体main的实现*/
+.main .all{
+    height: 40px;
+    border-bottom: 1px solid #c4d5e0;
+}
+.all p{
+    float: left;
+    font-size: 16px;
+    line-height: 40px;
+    margin-left: 20px;
+}
+.all span{
+    float: right;
+    font-size: 14px;
+    line-height: 40px;
+    margin-right: 15px;
+}
+.all input{
+    float: right;
+    width: 53px;
+    height: 25px;
+    border: none;
+    background-color: #0086ff;
+    font-size: 14px;
+    color: white;
+    margin-top: 8px;
+    margin-right: 20px;
+}
+.goods{
+   height: 50px;
+}
+.goods_left{
+    float: left;
+    line-height: 50px;
+    margin-left:15px;
+    font-size: 14px;
+}
+.goods_left input{
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top:2px;
+}
+.goods_left span{
+    margin-left:80px;
+}
+.goods_right{
+    float: right;
+    line-height: 50px;
+    margin-right: 263px;
+    font-size: 14px;
+}
+.goods_right span{
+    padding-left: 92px;
+}
+.items{
+    height: 525px;
+
+}
+.items_left{
+    float: left;
+    width: 990px;
+    height: 525px;
+    border: 1px solid #cccccc;
+}
+.items1{
+   height: 131px;
+   border-bottom: 1px solid #cccccc;
+}
+.items1 input{
+    float: left;
+    margin-left: 19px;
+    width: 15px;
+    height: 15px;
+    margin-top: 19px;
+}
+.items1 img{
+    float: left;
+    display: block;
+    border:1px solid #eeeeee;
+    margin-top: 19px;
+    margin-left: 12px;
+}
+.items1 span{
+    float: left;
+    margin-left: 9px;
+    margin-top: 19px;
+    font-size: 14px;
+}
+.items .right{
+    float: right;
+}
+
+.items .right span{
+  width: 117px;
+}
+
+.items .right .price{
+  color: #0086ff;
+}
+.items .right .delete{
+  width: 83px;
+}
+
+.items .right input[type=button]{
+  border: none;
+  width: 18px;
+  height: 24px;
+  margin: 0px;
+}
+
+.items .right input[type=text]{
+  margin: 0px;
+  height: 20px;
+
+}
+
+.items .right input[placeholder]{
+  padding-left: 6px;
+}
+
+.items2{
+   height: 131px;
+}
+.items_right{
+    float: right;
+    width: 195px;
+    height: 525px;
+    border: 1px solid #cccccc;
+}
+.settlement{
+    width: 990px;
+    height: 50px;
+    background-color: #e5e5e5;
+    margin-top: 16px;
+    line-height: 50px;
+}
+.settlement .left{
+  width: 870px;
+  height: 50px;
+  float: left;
+}
+.settlement .left input{
+    margin-left: 15px;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 2px;
+}
+
+.settlement .right{
+  width: 120px;
+  height: 50px;
+  border: none;
+  background-color: #b0b0b0;
+  color: white;
+  font-size: 20px;
+  float: right;
+}
+
+.blue{
+  color: #0086ff;
+}
+
+/*底部1*/
+.bottom{
+    height: 70px;
+    border-top: 2px solid #dddddd;
+    background-color: #f4f4f4;
+    margin-top: 31px;
+}
+.bottom1{
+    margin-top: 10px;
+}
+.bottom2{
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+.bottom a{
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 12px;
+    padding-right: 9px;
+}
+/*footer部分*/
+.end{
+    width: 100%;
+    height: 130px;
+    background-color: #f4f4f4;
+}
+.end1{
+    height: 130px;
+    background-color: white;
+    border-top: 2px solid #dddddd;
+}
+.end1 a{
+    font-size: 12px;
+    padding-top: 10px;
+    padding-right: 11px;
+}
+.end2{
+    margin-left: 13px;
+    padding-top: 10px;
+}

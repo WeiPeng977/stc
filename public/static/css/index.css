@@ -1,0 +1,219 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    min-width: 1200px;
+}
+.w{
+    width: 1200px;
+    margin: 0 auto;
+}
+a{
+    text-decoration: none;
+    color: #666560;
+}
+a:hover{
+    color: red;
+}
+ul{
+    list-style: none;
+}
+/*主导航栏的实现*/
+.top{
+    width: 100%;
+    height: 33px;
+    background-color: #f4f4f4;
+}
+.top1 a{
+    float: left;
+    margin-left: 15px;
+    font-size: 12px;
+    line-height: 33px;
+}
+.top2 a{
+    float: right;
+    line-height: 33px;
+    margin-right: 15px;
+    font-size: 12px;
+}
+/*logo+搜索框的实现*/
+.logo_search{
+    height: 140px;
+    /*background-color: pink;*/
+}
+.logo_search .left{
+    float: left;
+}
+.logo_search .p1{
+    font-size: 40px;
+    color: #0086ff;
+    margin-left: 41px;
+    padding-top: 30px;
+}
+.logo_search .p2{
+    color: #0086ff;
+    font-size: 20px;
+    padding-top: 5px;
+    margin-left: 23px;
+}
+/*.logo_search .center{
+    float: left;
+    width: 507px;
+    margin-top: 55px;
+    margin-left: 160px;
+    background-color: pink;
+}*/
+.logo_search .search{
+    float: left;
+    width: 554px;
+    height: 40px;
+    border: 2px solid #0054ff;
+    margin-top: 56px;
+    margin-left: 103px;
+}
+input[placeholder]{
+    padding-left: 15px;
+}
+.logo_search .btn{
+    float: left;
+    width: 74px;
+    height: 44px;
+    border: none;
+    color: white;
+    font-size: 17px;
+    background-color: #0054ff;
+    margin-top: 56px;
+    /*background-color:#0086ff;*/
+}
+/*分类区的实现*/
+.one{
+    width: 100%;
+    background-color: #f4f4f4;
+}
+.nav{
+    height: 30px;
+    /*border: 1px solid #0054ff;*/
+}
+.nav .left{
+    float: left;
+    width: 200px;
+    height: 30px;
+    background-color: #0054ff;
+}
+.nav .center{
+    float: left;
+    width: 800px;
+    height: 30px;
+    background-color: #0086ff;
+}
+.nav .right{
+    float: right;
+    width: 200px;
+    height: 30px;
+    background-color: #0054ff;
+}
+.nav p{
+    line-height: 30px;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+}
+.nav span{
+    line-height: 30px;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    margin-left: 18px;
+}
+/*主体main的实现*/
+.two{
+    width: 100%;
+    background-color: #f4f4f4;
+}
+.main{
+    height: 600px;
+    /*background-color: #f4f4f4;*/
+}
+.main .left{
+    float: left;
+    width: 198px;
+    height: 599px;
+    border: 1px solid #0054ff;
+    border-top: none;
+    background-color: white;
+}
+.main .center{
+    float: left;
+    width: 800px;
+    height: 600px;
+}
+.main img{
+    display: block;
+    width: 780px;
+    height: 580px;
+    padding: 10px;
+}
+.main .right{
+    float: right;
+    width: 198px;
+    height: 599px;
+    border: 1px solid #0054ff;
+    border-top: none;
+    background-color: white;
+}
+.main ul{
+    margin-top: 10px;
+}
+.main li{
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 18px;
+}
+.main a:hover{
+    background: #dce4ff;
+    color: black;
+    display: block;
+    width: 198px;
+    height: 31px;
+    line-height: 31px;
+}
+/*底部1*/
+.bottom{
+    height: 70px;
+    border-top: 2px solid #dddddd;
+    background-color: #f4f4f4;
+}
+.bottom1{
+    margin-top: 10px;
+}
+.bottom2{
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+.bottom a{
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 12px;
+    padding-right: 9px;
+}
+/*footer部分*/
+.end{
+    width: 100%;
+    height: 130px;
+    background-color: #f4f4f4;
+}
+.end1{
+    height: 130px;
+    background-color: white;
+    border-top: 2px solid #dddddd;
+}
+.end1 a{
+    font-size: 12px;
+    padding-top: 10px;
+    padding-right: 11px;
+}
+.end2{
+    margin-left: 13px;
+    padding-top: 10px;
+}

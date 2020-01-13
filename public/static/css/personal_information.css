@@ -1,0 +1,53 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    min-width: 1200px;
+}
+.personal_information{
+    width: 810px;
+    height: 227px;
+    border-bottom: 1px solid #d5e5f4;
+    margin-left: 20px;
+}
+.personal_information p{
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.personal_information input{
+    border: 1px solid #cecece;
+    width: 330px;
+    height: 30px;
+}
+.information{
+    height: 227px;
+    margin-left: 40px;
+}
+.information .name{
+    margin-top: 22px;
+    margin-left: 32px;
+}
+.information .sex{
+    margin-top: 15px;
+    margin-left: 32px;
+}
+.information .age{
+    margin-top: 15px;
+    margin-left: 32px;
+}
+.information .year{
+    margin-top: 15px;
+}
+.preserve_btn{
+    width: 55px;
+    height: 25px;
+    margin-top: 15px;
+    margin-left: 143px;
+    background-color: #0086ff;
+    border: transparent;
+    font-size: 14px;
+    color: white;
+}
