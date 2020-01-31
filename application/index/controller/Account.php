@@ -29,7 +29,7 @@ class Account extends Controller
   		if(!$user){
   			exit(json_encode(array('code'=>1,'msg'=>'用户不存在')));
   		}
-  		if($pwd != $user['password']){
+  		if(md5($user['username'].$pwd) != $user['password']){
   			exit(json_encode(array('code'=>1,'msg'=>'密码错误')));
   		}
       //exit(json_encode(array('code'=>1,'msg'=>'test')));
@@ -45,14 +45,14 @@ class Account extends Controller
     public function doregister(){
       //exit(json_encode(array('code'=>1,'msg'=>'test')));
   		 $data['username'] = trim(input('post.username'));
-  		 $data['password'] = trim(input('post.pwd'));
+  		 $password = trim(input('post.pwd'));
        $repwd = trim(input('post.repwd'));
        $data['telephone'] = trim(input('post.telephone'));
       // exit(json_encode(array('code'=>1,'msg'=>'$repwd')));
   		if($data['username'] == ''){
   		exit(json_encode(array('code'=>1,'msg'=>'用户名不能为空')));
   		}
-  		if($data['password'] == ''){
+  		if($password == ''){
   	  exit(json_encode(array('code'=>1,'msg'=>'密码不能为空')));
   		}
       if($repwd == ''){
@@ -61,9 +61,13 @@ class Account extends Controller
       if($data['telephone'] == ''){
       exit(json_encode(array('code'=>1,'msg'=>'电话号码不能为空')));
       }
-      if($data['password'] != $repwd){
+      if($password != $repwd){
       exit(json_encode(array('code'=>1,'msg'=>'两次密码输入不一致')));
       }
+      if($password){
+  			// 密码处理
+  			$data['password'] = md5($data['username'].$password);
+  		}
       $res = true;
   			// 检查用户是否已存在
         $this->db = new Sysdb;
