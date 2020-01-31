@@ -42,6 +42,46 @@ class Account extends Controller
   		session('admin',null);
   		exit(json_encode(array('code'=>0,'msg'=>'退出成功')));
   	}
+    public function doregister(){
+      //exit(json_encode(array('code'=>1,'msg'=>'test')));
+  		 $data['username'] = trim(input('post.username'));
+  		 $data['password'] = trim(input('post.pwd'));
+       $repwd = trim(input('post.repwd'));
+       $data['telephone'] = trim(input('post.telephone'));
+      // exit(json_encode(array('code'=>1,'msg'=>'$repwd')));
+  		if($data['username'] == ''){
+  		exit(json_encode(array('code'=>1,'msg'=>'用户名不能为空')));
+  		}
+  		if($data['password'] == ''){
+  	  exit(json_encode(array('code'=>1,'msg'=>'密码不能为空')));
+  		}
+      if($repwd == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'确认密码不能为空')));
+      }
+      if($data['telephone'] == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'电话号码不能为空')));
+      }
+      if($data['password'] != $repwd){
+      exit(json_encode(array('code'=>1,'msg'=>'两次密码输入不一致')));
+      }
+      $res = true;
+  			// 检查用户是否已存在
+        $this->db = new Sysdb;
+  			$item = $this->db->table('user')->where(array('username'=>$data['username']))->item();
+  			if($item){
+  				exit(json_encode(array('code'=>1,'msg'=>'该用户已存在')));
+  			}
+        $res = $this->db->table('user')->insert($data);
+
+  			//$data['add_time'] = time();
+  			// 保存用户
+
+
+  		if(!$res){
+  			exit(json_encode(array('code'=>1,'msg'=>'保存失败')));
+  		}
+  		exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
+  	}
     public function register()
     {
         return $this->fetch();
