@@ -92,6 +92,8 @@ class Account extends Controller
     }
     public function home()
     {
+      $site = "has";
+      $this->assign('site',$site);
         return $this->fetch();
     }
     public function modifyNumber()
