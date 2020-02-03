@@ -51,4 +51,50 @@ class Home extends BaseAdmin
       }
       exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
     }
+    public function modifyPass()
+    {
+        return $this->fetch();
+    }
+    public function domodifypass(){
+
+       $username = trim(input('post.username'));
+       $id = trim(input('post.id'));
+       $p_pwd = trim(input('post.p_pwd'));
+       $pwd = trim(input('post.pwd'));
+       $n_pwd = trim(input('post.n_pwd'));
+       $v_pwd = trim(input('post.v_pwd'));
+      // exit(json_encode(array('code'=>1,'msg'=>'test')));
+      if($pwd == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'原密码不能为空')));
+      }
+      if($n_pwd == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'新密码不能为空')));
+      }
+      if($v_pwd == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'确认密码不能为空')));
+      }
+      if($n_pwd != $v_pwd){
+      exit(json_encode(array('code'=>1,'msg'=>'两次密码输入不一致')));
+      }
+      if(md5($username.$pwd) != $p_pwd){
+  			exit(json_encode(array('code'=>1,'msg'=>'原密码错误')));
+  		}
+      if($n_pwd){
+        // 密码处理
+        $data['password'] = md5($username.$n_pwd);
+      }
+
+
+      $res = $this->db->table('user')->where(array('id'=>$id))->update($data);
+
+
+        //$data['add_time'] = time();
+        // 保存用户
+
+
+      if(!$res){
+        exit(json_encode(array('code'=>1,'msg'=>'保存失败')));
+      }
+      exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
+    }
 }

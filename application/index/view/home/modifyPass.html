@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="__STATIC__/css/modifyPass.css">
+    <script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
+</head>
+<body>
+    <div class="center">
+        <div class="modify">
+            <p>修改密码</p>
+            <form>
+            <div class="inform">
+                <input type="hidden" id="id" value="{$user.id}">
+                <input type="hidden" id="username" value="{$user.username}">
+                <input type="hidden" id="p_pwd" value="{$user.password}">
+                <input type="password" id="pwd" placeholder="原密码" class="user">
+                <input type="password" id="n_pwd" placeholder="新密码">
+                <input type="password" id="v_pwd" placeholder="确认密码">
+            </div>
+            <div>
+                <input type="button" value="确认修改" class="modify_btn" onclick="domodifypass()">
+            </div>
+          </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+      layui.use(['layer'],function(){
+        $ = layui.jquery;
+        layer = layui.layer;
+
+        // 用户名控件获取焦点
+        $('#username').focus();
+        // 回车登录
+        $('input').keydown(function(e){
+          if(e.keyCode == 13){
+            dologin();
+          }
+        });
+      });
+    function domodifypass(){
+      var id = $.trim($('#id').val());
+      var username = $.trim($('#username').val());
+      var p_pwd = $.trim($('#p_pwd').val());
+      var pwd = $.trim($('#pwd').val());
+      var n_pwd = $.trim($('#n_pwd').val());
+      var v_pwd = $.trim($('#v_pwd').val());
+      if(pwd == ''){
+        layer.alert('请输入原密码',{icon:2});
+        return;
+      }
+      if(n_pwd == ''){
+        layer.alert('请输入新密码',{icon:2});
+        return;
+      }
+      if(v_pwd == ''){
+        layer.alert('请确认密码',{icon:2});
+        return;
+      }
+      if(n_pwd != v_pwd){
+          layer.alert('两次密码输入不一致',{icon:2});
+        return;
+      }
+      $.post('/index.php/index/Home/domodifypass',{'pwd':pwd,'n_pwd':n_pwd,'v_pwd':v_pwd,'id':id,'username':username,'p_pwd':p_pwd},function(res){
+        if(res.code>0){
+          layer.alert(res.msg,{icon:2});
+        }else{
+          layer.msg(res.msg);
+          setTimeout(function(){window.location.href = '#'},1000);
+        }
+      },'json');
+    }
+    </script>
+</body>
+</html>
