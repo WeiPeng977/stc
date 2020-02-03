@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="__STATIC__/css/modifyNumber.css">
+    <script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
+</head>
+<body>
+<div class="center">
+    <div class="modify">
+        <p>修改手机号</p>
+        <form>
+        <div class="inform">
+            <input type="hidden" id="id" value="{$user.id}">
+            <input type="hidden" id="p_telephone" value="{$user.telephone}">
+            <input type="text" id="telephone" placeholder="原手机号" class="user">
+            <input type="text" id="n_telephone" placeholder="新手机号">
+            <input type="text" id="v_telephone" placeholder="确认手机号">
+        </div>
+        <div>
+            <input type="button" value="确认修改" class="modify_btn" onclick="domodifytelephone()">
+        </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+  layui.use(['layer'],function(){
+    $ = layui.jquery;
+    layer = layui.layer;
+
+    // 用户名控件获取焦点
+    $('#username').focus();
+    // 回车登录
+    $('input').keydown(function(e){
+      if(e.keyCode == 13){
+        dologin();
+      }
+    });
+  });
+function domodifytelephone(){
+  var id = $.trim($('#id').val());
+  var p_telephone = $.trim($('#p_telephone').val());
+  var telephone = $.trim($('#telephone').val());
+  var n_telephone = $.trim($('#n_telephone').val());
+  var v_telephone = $.trim($('#v_telephone').val());
+  if(telephone == ''){
+    layer.alert('请输入原手机号',{icon:2});
+    return;
+  }
+  if(n_telephone == ''){
+    layer.alert('请输入新手机号',{icon:2});
+    return;
+  }
+  if(v_telephone == ''){
+    layer.alert('请确认手机号',{icon:2});
+    return;
+  }
+  if(p_telephone != telephone){
+    layer.alert('原手机号输入错误',{icon:2});
+    return;
+  }
+    if(n_telephone != v_telephone){
+      layer.alert('两次输入手机号不一致',{icon:2});
+    return;
+  }
+  $.post('/index.php/index/Home/domodifytelephone',{'telephone':telephone,'n_telephone':n_telephone,'v_telephone':v_telephone,'id':id},function(res){
+    if(res.code>0){
+      layer.alert(res.msg,{icon:2});
+    }else{
+      layer.msg(res.msg);
+      setTimeout(function(){window.location.href = '#'},1000);
+    }
+  },'json');
+}
+</script>
+</body>
+</html>

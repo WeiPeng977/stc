@@ -96,10 +96,6 @@ class Account extends Controller
       $this->assign('site',$site);
         return $this->fetch();
     }
-    public function modifyNumber()
-    {
-        return $this->fetch();
-    }
     public function modifyPass()
     {
         return $this->fetch();
