@@ -14,28 +14,25 @@ class Goods extends BaseAdmin{
 		$data['wd'] = trim(input('get.wd'));
 		$where = array();
 		$data['wd'] && $where = 'title like "%'.$data['wd'].'%"';
-		$data['data'] = $this->db->table('video')->where($where)->order('id desc')->pages($data['pageSize']);
+		$data['data'] = $this->db->table('goods')->where($where)->order('id desc')->pages($data['pageSize']);
 
 		$label_ids = [];
 		foreach ($data['data']['lists'] as $item) {
-			!in_array($item['channel_id'],$label_ids) && $label_ids[] = $item['channel_id'];
-			!in_array($item['charge_id'],$label_ids) && $label_ids[] = $item['charge_id'];
-			!in_array($item['area_id'],$label_ids) && $label_ids[] = $item['area_id'];
+			!in_array($item['type_id'],$label_ids) && $label_ids[] = $item['type_id'];
 		}
-		$label_ids && $data['labels'] = $this->db->table('video_label')->where('id in('.implode(',',$label_ids).')')->cates('id');
+		$label_ids && $data['labels'] = $this->db->table('goods_label')->where('id in('.implode(',',$label_ids).')')->cates('id');
 		$this->assign('data',$data);
 		return $this->fetch();
 	}
 
 	// 添加影片
 	public function add(){
-		$data['channel'] = $this->db->table('video_label')->where(array('flag'=>'channel'))->lists();
-		$data['charge'] = $this->db->table('video_label')->where(array('flag'=>'charge'))->lists();
-		$data['areas'] = $this->db->table('video_label')->where(array('flag'=>'area'))->lists();
+		$data['type'] = $this->db->table('goods_label')->where(array('flag'=>'type'))->lists();
 
 		$id = (int)input('get.id');
 
-		$data['item'] = $this->db->table('video')->where(array('id'=>$id))->item();
+		$data['item'] = $this->db->table('goods')->where(array('id'=>$id))->item();
+
 		$this->assign('data',$data);
 		return $this->fetch();
 	}
@@ -43,27 +40,21 @@ class Goods extends BaseAdmin{
 	public function save(){
 		$id = (int)input('post.id');
 		$data['title'] = trim(input('post.title'));
-		$data['channel_id'] = (int)input('post.channel_id');
-		$data['charge_id'] = (int)input('post.charge_id');
-		$data['area_id'] = (int)input('post.area_id');
+		$data['type_id'] = (int)input('post.type_id');
 		$data['img'] = trim(input('post.img'));
-		$data['url'] = trim(input('post.url'));
-		$data['keywords'] = trim(input('post.keywords'));
+		$data['price'] = trim(input('post.price'));
+		$data['stock'] = trim(input('post.stock'));
 		$data['desc'] = trim(input('post.desc'));
 		$data['status'] = (int)input('post.status');
 
 		if($data['title'] == ''){
-			exit(json_encode(array('code'=>1,'msg'=>'影片名称不能为空')));
+			exit(json_encode(array('code'=>1,'msg'=>'商品名称不能为空')));
 		}
-		if($data['url'] == ''){
-			exit(json_encode(array('code'=>1,'msg'=>'影片地址不能为空')));
-		}
-
 		if($id){
-			$this->db->table('video')->where(array('id'=>$id))->update($data);
+			$this->db->table('goods')->where(array('id'=>$id))->update($data);
 		}else{
 			$data['add_time'] = time();
-			$this->db->table('video')->insert($data);
+			$this->db->table('goods')->insert($data);
 		}
 		exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
 	}
@@ -86,7 +77,7 @@ class Goods extends BaseAdmin{
 	// 删除
 	public function delete(){
 		$id = (int)input('post.id');
-		$this->db->table('video')->where(array('id'=>$id))->delete();
+		$this->db->table('goods')->where(array('id'=>$id))->delete();
 		exit(json_encode(array('code'=>0,'msg'=>'删除成功')));
 	}
 }

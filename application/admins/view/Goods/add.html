@@ -15,33 +15,12 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">频道</label>
+			<label class="layui-form-label">种类</label>
 			<div class="layui-input-inline">
-				<select name="channel_id">
+				<select name="type_id">
 					<option value="0">请选择</option>
-					{volist name="data.channel" id="vo_channel"}
-					<option value="{$vo_channel.id}" <?php if($data['item']['channel_id']==$vo_channel['id']){echo 'selected';}?>>{$vo_channel.title}</option>
-					{/volist}
-				</select>
-			</div>
-
-			<label class="layui-form-label">资费</label>
-			<div class="layui-input-inline">
-				<select name="charge_id">
-					<option value="0">请选择</option>
-					{volist name="data.charge" id="vo_charge"}
-					<option value="{$vo_charge.id}" <?php if($data['item']['charge_id']==$vo_charge['id']){echo 'selected';}?>>{$vo_charge.title}</option>
-					{/volist}
-				</select>
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">地区</label>
-			<div class="layui-input-inline">
-				<select name="area_id">
-					<option value="0">请选择</option>
-					{volist name="data.areas" id="vo_area"}
-					<option value="{$vo_area.id}" <?php if($data['item']['area_id']==$vo_area['id']){echo 'selected';}?>>{$vo_area.title}</option>
+					{volist name="data.type" id="vo_type"}
+					<option value="{$vo_type.id}" <?php if($data['item']['type_id']==$vo_type['id']){echo 'selected';}?>>{$vo_type.title}</option>
 					{/volist}
 				</select>
 			</div>
@@ -53,15 +32,15 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">商品地址</label>
+			<label class="layui-form-label">价格</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input" name="url" value="{$data.item.url}">
+				<input type="text" class="layui-input" name="price" value="{$data.item.price}">
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">关键字</label>
+			<label class="layui-form-label">库存</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input" name="keywords" value="{$data.item.keywords}">
+				<input type="text" class="layui-input" name="stock" value="{$data.item.stock}">
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -73,7 +52,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">状态</label>
 			<div class="layui-input-inline">
-				<input type="checkbox" layui-skin="primary" name="status" title="发布" <?php if($data['item']['status']){echo 'checked';}?> value="1">
+				<input type="checkbox" layui-skin="primary" name="status" title="上架" <?php if($data['item']['status']){echo 'checked';}?> value="1">
 			</div>
 		</div>
 	</form>
@@ -111,16 +90,11 @@
 	// 保存
 	function save(){
 		var title = $.trim($('input[name="title"]').val());
-		var url = $.trim($('input[name="url"]').val());
 		if(title == ''){
 			layer.msg('请输入商品名称',{'icon':2,'anim':6});
 			return;
 		}
-		if(url == ''){
-			layer.msg('请输入商品地址',{'icon':2,'anim':6});
-			return;
-		}
-		$.post('/admins.php/admins/video/save',$('form').serialize(),function(res){
+		$.post('/admins.php/admins/goods/save',$('form').serialize(),function(res){
 			if(res.code>0){
 				layer.msg(res.msg,{'icon':2,'anim':2});
 			}else{

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>频道</title>
+	<title>商品分类</title>
 	<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
 	<script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
 	<style type="text/css">
@@ -11,18 +11,18 @@
 </head>
 <body style="padding: 10px;">
 	<div class="header">
-		<span>频道管理</span>
+		<span商品分类管理</span>
 		<div></div>
 	</div>
 
 	<form class="layui-form">
-		<input type="hidden" name="flag" value="channel">
+		<input type="hidden" name="flag" value="type">
 		<table class="layui-table">
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>排序</th>
-					<th>标签名称</th>
+					<th>分类名称</th>
 					<th>是否禁用</th>
 				</tr>
 			</thead>
@@ -64,5 +64,5 @@
 			},'json');
 		}
 	</script>
-</body> 
+</body>
 </html>

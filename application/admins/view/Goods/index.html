@@ -18,7 +18,7 @@
 	</div>
 	<div class="layui-form-item" style="margin-top: 10px;">
 		<div class="layui-input-inline">
-			<input type="text" class="layui-input" value="{$data.wd}" id="wd" placeholder="请输入商品名称进行搜索">
+			<input type="text" class="layui-input" value="{$data.wd}" id="wd" placeholder="请输入商品名称搜索">
 		</div>
 		<button class="layui-btn layui-btn-primary" onclick="searchs()"><i class="layui-icon">&#xe615;</i>搜索</button>
 	</div>
@@ -29,8 +29,9 @@
 				<th>图片</th>
 				<th>名称</th>
 				<th>价格</th>
-				<th>种类</th>
 				<th>库存</th>
+				<th>种类</th>
+				<th>状态</th>
 				<th>添加时间</th>
 				<th>操作</th>
 			</tr>
@@ -40,10 +41,11 @@
 			<tr>
 				<td>{$vo.id}</td>
 				<td><img src="{$vo.img}" style="height: 30px;"></td>
-				<!-- <td>{:isset($data['labels'][$vo['charge_id']])?$data['labels'][$vo['charge_id']]['title']:''}</td>
-				<td>{:isset($data['labels'][$vo['area_id']])?$data['labels'][$vo['area_id']]['title']:''}</td>
 				<td>{$vo.title}</td>
-				<td>{$vo.status==0?'<span style="color:red">下线</span>':'正常'}</td> -->
+				<td>{$vo.price}</td>
+				<td>{$vo.stock}</td>
+				<td>{:isset($data['labels'][$vo['type_id']])?$data['labels'][$vo['type_id']]['title']:''}</td>
+				<td>{$vo.status}</td>
 				<td>{:date('Y-m-d H:i:s',$vo.add_time)}</td>
 				<td>
 					<button class="layui-btn layui-btn-xs" onclick="add({$vo.id})">编辑</button>
@@ -53,65 +55,64 @@
 			{/volist}
 		</tbody>
 	</table>
-	<div id="pages"></div>
+<div id="pages"></div>
 
+<script type="text/javascript">
+	layui.use(['layer','laypage'],function(){
+		layer = layui.layer;
+		$ = layui.jquery;
+		laypage = layui.laypage;
 
-	<script type="text/javascript">
-		layui.use(['layer','laypage'],function(){
-			layer = layui.layer;
-			$ = layui.jquery;
-			laypage = layui.laypage;
-
-			laypage.render({
-			    elem: 'pages'
-			    ,count:{$data.data.total}
-			    ,limit:{$data.pageSize}
-			    ,curr:{$data.page}
-				,jump: function(obj, first){
-			    if(!first){
-			    	searchs(obj.curr);
-			    }
-			  }
-			});
-		});
-
-		// 添加编辑
-		function add(id){
-			layer.open({
-			  type: 2,
-			  title: id>0?'编辑商品':'添加商品',
-			  shade: 0.3,
-			  area: ['800px', '500px'],
-			  content: '/admins.php/admins/goods/add?id='+id
-			});
-		}
-
-		// 删除
-		function del(id){
-			layer.confirm('确定要删除吗？', {
-			  icon:3,
-			  btn: ['确定','取消']
-			}, function(){
-			  $.post('/admins.php/admins/video/delete',{'id':id},function(res){
-			  	if(res.code>0){
-			  		layer.alert(res.msg,{icon:2});
-			  	}else{
-			  		layer.msg(res.msg);
-			  		setTimeout(function(){window.location.reload();},1000);
-			  	}
-			  },'json');
-			});
-		}
-
-		// 搜索
-		function searchs(curpage){
-			var wd = $.trim($('#wd').val());
-			var url = "/admins.php/admins/video/index?page="+curpage;
-			if(wd){
-				url += '&wd='+wd;
+		laypage.render({
+				elem: 'pages'
+				,count:{$data.data.total}
+				,limit:{$data.pageSize}
+				,curr:{$data.page}
+			,jump: function(obj, first){
+				if(!first){
+					searchs(obj.curr);
+				}
 			}
-			window.location.href = url;
+		});
+	});
+
+	// 添加编辑
+	function add(id){
+		layer.open({
+			type: 2,
+			title: id>0?'编辑商品':'添加商品',
+			shade: 0.3,
+			area: ['800px', '500px'],
+			content: '/admins.php/admins/goods/add?id='+id
+		});
+	}
+
+	// 删除
+	function del(id){
+		layer.confirm('确定要删除吗？', {
+			icon:3,
+			btn: ['确定','取消']
+		}, function(){
+			$.post('/admins.php/admins/goods/delete',{'id':id},function(res){
+				if(res.code>0){
+					layer.alert(res.msg,{icon:2});
+				}else{
+					layer.msg(res.msg);
+					setTimeout(function(){window.location.reload();},1000);
+				}
+			},'json');
+		});
+	}
+
+	// 搜索
+	function searchs(curpage){
+		var wd = $.trim($('#wd').val());
+		var url = "/admins.php/admins/goods/index?page="+curpage;
+		if(wd){
+			url += '&wd='+wd;
 		}
-	</script>
+		window.location.href = url;
+	}
+</script>
 </body>
 </html>
