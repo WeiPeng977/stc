@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>手推车电脑配件商城</title>
     <link type="text/css" rel="stylesheet" href="__STATIC__/css/index.css">
+    <script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
 </head>
 <body>
 <!--主导航栏的实现-->
@@ -25,8 +26,8 @@
             <p class="p2">shoutuiche.com</p>
         </div>
         <div class="center">
-            <input type="text" placeholder="英特尔酷睿i5处理器" class="search">
-            <input type="button" value="搜索" class="btn">
+            <input type="text" placeholder="英特尔酷睿i5处理器" class="search" value="{$data.wd}" id="wd">
+            <input type="button" value="搜索" class="btn" onclick="searchs()">
         </div>
     </div>
 <!--分类区的实现-->
@@ -42,22 +43,9 @@
     <div class="main w">
         <div class="left">
             <ul>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
-                <li><a href="">处理器</a></li>
+                {volist name="type_list" id="tvo"}
+                <li><a href="/index.php/index/Goods/goods?type_id={$tvo.id}">{$tvo.title}</a></li>
+                {/volist}
             </ul>
         </div>
         <div class="center">
@@ -94,5 +82,36 @@
             <div class="end2"><a>黑公网安备</a></div>
         </div>
     </div>
+
+    <script type="text/javascript">
+    	layui.use(['layer','laypage'],function(){
+    		layer = layui.layer;
+    		$ = layui.jquery;
+    		laypage = layui.laypage;
+
+    		laypage.render({
+    				elem: 'pages'
+    				,count:{$data.data.total}
+    				,limit:{$data.pageSize}
+    				,curr:{$data.page}
+    			,jump: function(obj, first){
+    				if(!first){
+    					searchs(obj.curr);
+    				}
+    			}
+    		});
+    	});
+
+
+    	// 搜索
+    	function searchs(curpage){
+    		var wd = $.trim($('#wd').val());
+    		var url = "/index.php/index/goods/goods?page="+curpage;
+    		if(wd){
+    			url += '&wd='+wd;
+    		}
+    		window.location.href = url;
+    	}
+    </script>
 </body>
 </html>

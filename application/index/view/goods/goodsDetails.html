@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>商品详情</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/goodsDetails.css">
+</head>
+<body>
+	<!--主导航栏的实现-->
+<div class="top">
+    <div class="top1 w">
+        <a href="login.html">登录</a>
+        <a href="register.html">注册</a>
+    </div>
+    <div class="top2 w">
+        <a href="home.html">个人中心</a>
+        <a href="#">购物车</a>
+        <a href="index.html">首页</a>
+    </div>
+</div>
+<!--搜索栏的实现-->
+<div class="search w">
+    <div class="left"><p>商品详情</p></div>
+    <div class="right">
+        <input type="text">
+        <input type="button" value="搜索">
+    </div>
+</div>
+<!--  主体main -->
+<div class="main w">
+	<div class="m_left">
+		<img src="{$data.data.img}">
+	</div>
+	<div class="m_center">
+			<p style="font-size: 16px; padding-left: 5px;"><b>{$data.data.title}</b></p>
+		<div class="price">
+			<span style=" font-size: 14px;padding-left: 5px;">价格</span>
+			<span style="font-size: 21px;color:#0086ff;padding-left: 46px;">￥{$data.data.price}</span>
+		</div>
+		<div class="fee" style="margin-top: 13px;">
+			<span>运费</span>
+			<span style="padding-left: 49px;">￥&nbsp;0.00</span>
+		</div>
+		<div class="fee" style="margin-top: 30px;">
+			<span>销量</span>
+			<span style="padding-left: 49px;">0</span>
+		</div>
+		<div class="fee" style="margin-top: 30px;">
+			<span>库存剩余</span>
+			<span style="padding-left: 21px;">{$data.data.stock}&nbsp;件</span>
+		</div>
+		<div class="fee" style="margin-top: 30px;">
+			<span>数量</span>
+			<span style="padding-left: 49px;">-&nbsp;&nbsp;0&nbsp;&nbsp;+</span>
+		</div>
+		<div class="m_btn">
+				<button class="btn1" style="margin-left: 85px;">立即购买</button>
+				<button class="btn2" style="margin-left: 10px;">加入购物车</button>
+		</div>
+	</div>
+	<div class="m_right"></div>
+</div>
+<!--底部1-->
+<div class="bottom w">
+    <div class="bottom1">
+        <a href="">手推车电脑配件商城</a>
+        <a href="">手推车论坛</a>
+    </div>
+    <div class="bottom2">
+        <a href="">手推车手机维修网</a>
+        <a href="">手推车电子大世界</a>
+    </div>
+</div>
+<!--footer-->
+<div class="end">
+    <div class="end1 w">
+        <div class="end2">
+            <a href="">关于手推车</a>
+            <a href="">合作伙伴</a>
+            <a href="">营销中心</a>
+            <a href="">廉政举报</a>
+            <a href="">联系客服</a>
+            <a href="">诚征英才</a>
+            <a href="">联系我们</a>
+        </div>
+        <div class="end2"><a>增值电信业务许可证</a></div>
+        <div class="end2"><a>互联网电子配件经营许可证</a></div>
+        <div class="end2"><a>黑公网安备</a></div>
+    </div>
+</div>
+</body>
+</html>
+</body>
+</html>
