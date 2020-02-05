@@ -97,4 +97,45 @@ class Home extends BaseAdmin
       }
       exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
     }
+    public function personal_information()
+    {
+        return $this->fetch();
+    }
+    public function domodifyinformation(){
+       $id = trim(input('post.id'));
+       $truename = trim(input('post.truename'));
+       $sex = trim(input('post.sex'));
+       $age = trim(input('post.age'));
+       $date = trim(input('post.date'));
+      // exit(json_encode(array('code'=>1,'msg'=>'$repwd')));
+      if($truename == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'姓名不能为空')));
+      }
+      if($sex == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'性别不能为空')));
+      }
+      if($age == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'年龄不能为空')));
+      }
+      if($date == ''){
+      exit(json_encode(array('code'=>1,'msg'=>'出生日期不能为空')));
+      }
+      $data['truename'] = $truename;
+      $data['sex'] = $sex;
+      $data['age'] = $age;
+      $data['date'] = $date;
+
+
+      $res = $this->db->table('user')->where(array('id'=>$id))->update($data);
+
+
+        //$data['add_time'] = time();
+        // 保存用户
+
+
+      if(!$res){
+        exit(json_encode(array('code'=>1,'msg'=>'保存失败')));
+      }
+      exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
+    }
 }

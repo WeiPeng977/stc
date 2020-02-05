@@ -96,8 +96,4 @@ class Account extends Controller
       $this->assign('site',$site);
         return $this->fetch();
     }
-    public function personal_information()
-    {
-        return $this->fetch();
-    }
 }

@@ -1,4 +1,4 @@
-<?php
+ <?php
 namespace app\admins\controller;
 use think\Controller;
 use Util\data\Sysdb;

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人资料</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/personal_information.css">
+    <script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
+</head>
+<body>
+    <div class="personal_information">
+        <p>个人资料</p>
+        <form>
+        <div class="information">
+        <input type="hidden" id="id" value="{$user.id}">
+        姓名：<input type="text" id="truename" class="name" value="{$user.truename}"><br />
+        性别：<input type="text" id="sex" class="sex" value="{$user.sex}"><br />
+        年龄：<input type="text" id="age" class="age" value="{$user.age}"><br />
+        出生日期：<input type="text" id="date" class="year" value="{$user.date}">
+        </div>
+    </div>
+    <div class="preserve">
+        <input type="button" value="保存" class="preserve_btn" onclick="domodifyinformation()">
+    </div>
+  </form>
+  <script type="text/javascript">
+    layui.use(['layer'],function(){
+      $ = layui.jquery;
+      layer = layui.layer;
+
+      // 用户名控件获取焦点
+      $('#username').focus();
+      // 回车登录
+      $('input').keydown(function(e){
+        if(e.keyCode == 13){
+          dologin();
+        }
+      });
+    });
+  function domodifyinformation(){
+    var id = $.trim($('#id').val());
+    var truename = $.trim($('#truename').val());
+    var sex = $.trim($('#sex').val());
+    var age = $.trim($('#age').val());
+    var date = $.trim($('#date').val());
+    if(truename == ''){
+      layer.alert('请输入姓名',{icon:2});
+      return;
+    }
+    if(sex == ''){
+      layer.alert('请输入性别',{icon:2});
+      return;
+    }
+    if(age == ''){
+      layer.alert('请输入年龄',{icon:2});
+      return;
+    }
+    if(date == ''){
+      layer.alert('请输入出生日期',{icon:2});
+      return;
+    }
+    $.post('/index.php/index/Home/domodifyinformation',{'truename':truename,'sex':sex,'age':age,'id':id,'date':date},function(res){
+      if(res.code>0){
+        layer.alert(res.msg,{icon:2});
+      }else{
+        layer.msg(res.msg);
+        setTimeout(function(){window.location.href = '#'},1000);
+      }
+    },'json');
+  }
+  </script>
+</body>
+</html>
