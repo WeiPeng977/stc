@@ -49,10 +49,6 @@
     });
   });
 
-  // 重新生成验证码
-  function reloadImg(){
-    $('#img').attr('src','{:captcha_src()}?rand='+Math.random());
-  }
 
   // 登录
   function dologin(){
@@ -68,7 +64,6 @@
     }
     $.post('/admins.php/admins/Test/dologin',{'username':username,'pwd':pwd},function(res){
       if(res.code>0){
-        reloadImg();
         layer.alert(res.msg,{icon:2});
       }else{
         layer.msg(res.msg);

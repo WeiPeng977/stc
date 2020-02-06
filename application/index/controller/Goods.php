@@ -29,6 +29,7 @@ class Goods extends Controller
     }
     public function goodsDetails()
     {
+        $data['user'] = session('user');
         $data['goods_id'] = (int)input('get.goods_id');
         $data['data'] = $this->db->table('goods')->where(array('id'=>$data['goods_id']))->item();
         $this->assign('data',$data);

@@ -46,49 +46,21 @@
 	</div>
 	<div class="items w">
 		<div class="items_left">
+			{volist name="data.goods" id="vo"}
+
 			<div class="items1">
 			  <input type="checkbox" name="">
 				<img src="__STATIC__/images/item.jpg">
-				<span>英特尔（Intel）i5 9400F<br />酷睿六核 盒装CPU处理器</span>
+				<span>{$vo.title}</span>
 				<div class="right">
-					<span>￥1199.00</span>
+					<span>￥{$vo.price}</span>
 				<span><input type="button" name="" value="-"><input type="text" placeholder="1"><input type="button" name="" value="+"></span>
 				<span class="price">￥1199.00</span>
 				<span class="delete"><a href="">删除</a></span>
 				</div>
 			</div>
-			<div class="items1">
-				<input type="checkbox" name="">
-				<img src="__STATIC__/images/item.jpg">
-				<span>英特尔(Intel) i5 9400F<br />酷睿六核 盒装CPU处理器</span>
-				<div class="right">
-					<span>￥1199.00</span>
-				<span><input type="button" name="" value="-"><input type="text" placeholder="1"><input type="button" name="" value="+"></span>
-				<span class="price">￥1199.00</span>
-				<span class="delete"><a href="">删除</a></span>
-				</div>
-			</div>
-			<div class="items1">
-				<input type="checkbox" name="">
-				<img src="__STATIC__/images/item.jpg">
-				<span>英特尔(Intel) i5 9400F<br />酷睿六核 盒装CPU处理器</span>
-				<div class="right">
-					<span>￥1199.00</span>
-				<span><input type="button" name="" value="-"><input type="text" placeholder="1"><input type="button" name="" value="+"></span>
-				<span class="price">￥1199.00</span>
-				<span class="delete"><a href="">删除</a></span>
-				</div>
-			</div>
-			<div class="items1" style="border:none;">
-				<input type="checkbox" name="">
-				<img src="__STATIC__/images/item.jpg">
-				<span>英特尔(Intel) i5 9400F<br />酷睿六核 盒装CPU处理器</span>
-				<div class="right">
-					<span>￥1199.00</span>
-				<span><input type="button" name="" value="-"><input type="text" placeholder="1"><input type="button" name="" value="+"></span>
-				<span class="price">￥1199.00</span>
-				<span class="delete"><a href="">删除</a></span>
-				</div></div>
+			{/volist}
+
 		</div>
 		<div class="items_right"></div>
 	</div>

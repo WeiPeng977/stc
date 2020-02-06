@@ -3,6 +3,7 @@
 <head>
 	<title>商品详情</title>
 	<link rel="stylesheet" type="text/css" href="__STATIC__/css/goodsDetails.css">
+	<script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
 </head>
 <body>
 	<!--主导航栏的实现-->
@@ -30,6 +31,7 @@
 	<div class="m_left">
 		<img src="{$data.data.img}">
 	</div>
+	<form>
 	<div class="m_center">
 			<p style="font-size: 16px; padding-left: 5px;"><b>{$data.data.title}</b></p>
 		<div class="price">
@@ -52,11 +54,14 @@
 			<span>数量</span>
 			<span style="padding-left: 49px;">-&nbsp;&nbsp;0&nbsp;&nbsp;+</span>
 		</div>
+		<input type="hidden" id="id" value="{$data.user.id}">
+		<input type="hidden" id="goods_id" value="{$data.goods_id}">
 		<div class="m_btn">
-				<button class="btn1" style="margin-left: 85px;">立即购买</button>
-				<button class="btn2" style="margin-left: 10px;">加入购物车</button>
+			  <input type="button" value="立即购买" class="btn1"  onclick="dobuy()">
+				<input type="button" value="加入购物车" class="btn2"  onclick="doput()">
 		</div>
 	</div>
+</form>
 	<div class="m_right"></div>
 </div>
 <!--底部1-->
@@ -87,7 +92,31 @@
         <div class="end2"><a>黑公网安备</a></div>
     </div>
 </div>
-</body>
-</html>
+<script type="text/javascript">
+  layui.use(['layer'],function(){
+    $ = layui.jquery;
+    layer = layui.layer;
+
+    // 用户名控件获取焦点
+    $('#username').focus();
+    // 回车登录
+    $('input').keydown(function(e){
+      if(e.keyCode == 13){
+        dologin();
+      }
+    });
+  });
+function doput(){
+  var id = $.trim($('#id').val());
+  var goods_id = $.trim($('#goods_id').val());
+  $.post('/index.php/index/Cart/doput',{'id':id,'goods_id':goods_id},function(res){
+    if(res.code>0){
+      layer.alert(res.msg,{icon:2});
+    }else{
+      layer.msg(res.msg);
+    }
+  },'json');
+}
+</script>
 </body>
 </html>
