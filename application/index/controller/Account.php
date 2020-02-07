@@ -16,7 +16,6 @@ class Account extends Controller
     public function dologin(){
   		 $username = trim(input('post.username'));
   		 $pwd = trim(input('post.pwd'));
-      // exit(json_encode(array('code'=>1,'msg'=>'test')));
   		if($username == ''){
   		exit(json_encode(array('code'=>1,'msg'=>'用户名不能为空')));
   		}
@@ -32,23 +31,21 @@ class Account extends Controller
   		if(md5($user['username'].$pwd) != $user['password']){
   			exit(json_encode(array('code'=>1,'msg'=>'密码错误')));
   		}
-      //exit(json_encode(array('code'=>1,'msg'=>'test')));
   		// 设置用户session
   		session('user',$user);
   		exit(json_encode(array('code'=>0,'msg'=>'登录成功')));
   	}
 
   	public function logout(){
-  		session('admin',null);
+  		session('user',null);
   		exit(json_encode(array('code'=>0,'msg'=>'退出成功')));
   	}
+
     public function doregister(){
-      //exit(json_encode(array('code'=>1,'msg'=>'test')));
   		 $data['username'] = trim(input('post.username'));
   		 $password = trim(input('post.pwd'));
        $repwd = trim(input('post.repwd'));
        $data['telephone'] = trim(input('post.telephone'));
-      // exit(json_encode(array('code'=>1,'msg'=>'$repwd')));
   		if($data['username'] == ''){
   		exit(json_encode(array('code'=>1,'msg'=>'用户名不能为空')));
   		}
@@ -77,23 +74,13 @@ class Account extends Controller
   			}
         $res = $this->db->table('user')->insert($data);
 
-  			//$data['add_time'] = time();
-  			// 保存用户
-
-
   		if(!$res){
-  			exit(json_encode(array('code'=>1,'msg'=>'保存失败')));
+  			exit(json_encode(array('code'=>1,'msg'=>'注册失败')));
   		}
-  		exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
+  		exit(json_encode(array('code'=>0,'msg'=>'注册成功')));
   	}
     public function register()
     {
-        return $this->fetch();
-    }
-    public function home()
-    {
-      $site = "has";
-      $this->assign('site',$site);
         return $this->fetch();
     }
 }

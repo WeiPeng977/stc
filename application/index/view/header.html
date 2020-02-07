@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手推车电脑配件商城</title>
+    <link type="text/css" rel="stylesheet" href="__STATIC__/css/layout.css">
+    <script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
+</head>
+<body>
+<!--主导航栏的实现-->
+<div class="top">
+        <div class="top1 w">
+            <a href="{$Think.session.user?"http://www.stc.net/index.php/index/Home/home":"http://www.stc.net/index.php/index/Account/login"}">{$Think.session.user?"欢迎光临！":""}{$Think.session.user? $Think.session.user.username :"登录"}</a>
+            <a href="http://www.stc.net/index.php/index/Account/register">{$Think.session.user?"":"注册"}</a>
+            <a href="javascript:void(0);" onclick="logout()">{$Think.session.user?"退出":""}</a>
+        </div>
+        <div class="top2 w">
+            <a href="http://www.stc.net/index.php/index/Home/home">个人中心</a>
+            <a href="http://www.stc.net/index.php/index/Cart/cart">购物车</a>
+            <a href="http://www.stc.net">首页</a>
+        </div>
+</div>
+
+<script>
+  layui.use(['element','layer'], function(){
+    var element = layui.element;
+    $ = layui.jquery;
+    layer = layui.layer;
+
+    resetMenuHeight();
+  });
+
+  // 退出
+  function logout(){
+    layer.confirm('确定要退出吗？', {
+      btn: ['确定','取消']
+    }, function(){
+      $.get('/index.php/index/Account/logout',function(res){
+        if(res.code>0){
+          layer.msg(res.msg,{'icon':2});
+        }else{
+          layer.msg(res.msg,{'icon':1});
+          setTimeout(function(){window.location.href="/index.php/index/Account/login";},1000);
+        }
+      },'json');
+    });
+  }
+</script>

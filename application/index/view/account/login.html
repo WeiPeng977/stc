@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>登录页面</title>
-    <link rel="stylesheet" type="text/css" href="__STATIC__/css/login.css">
-    <script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
-</head>
-<body>
-<!--主导航栏的实现-->
-<div class="top">
-        <div class="top1 w">
-            <a href="http://www.stc.net/index.php/index/Account/login">登录</a>
-            <a href="http://www.stc.net/index.php/index/Account/register">注册</a>
-        </div>
-        <div class="top2 w">
-            <a href="http://www.stc.net/index.php/index/Account/home">个人中心</a>
-            <a href="http://www.stc.net/index.php/index/Cart/cart">购物车</a>
-            <a href="http://www.stc.net">首页</a>
-        </div>
-    </div>
+{layout name="layout"/}
+
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/login.css">
 <!--logo+搜索框的实现-->
 <div class="logo_search w">
     <div class="left">
@@ -47,34 +29,7 @@
         </div>
     </div>
 </div>
-<!--底部1-->
-<div class="bottom w">
-    <div class="bottom1">
-        <a href="">手推车电脑配件商城</a>
-        <a href="">手推车论坛</a>
-    </div>
-    <div class="bottom2">
-        <a href="">手推车手机维修网</a>
-        <a href="">手推车电子大世界</a>
-    </div>
-</div>
-<!--footer-->
-<div class="end">
-    <div class="end1 w">
-        <div class="end2">
-            <a href="">关于手推车</a>
-            <a href="">合作伙伴</a>
-            <a href="">营销中心</a>
-            <a href="">廉政举报</a>
-            <a href="">联系客服</a>
-            <a href="">诚征英才</a>
-            <a href="">联系我们</a>
-        </div>
-        <div class="end2"><a>增值电信业务许可证</a></div>
-        <div class="end2"><a>互联网电子配件经营许可证</a></div>
-        <div class="end2"><a>黑公网安备</a></div>
-    </div>
-</div>
+
 <script type="text/javascript">
   layui.use(['layer'],function(){
     $ = layui.jquery;
@@ -105,10 +60,8 @@ function dologin(){
       layer.alert(res.msg,{icon:2});
     }else{
       layer.msg(res.msg);
-      setTimeout(function(){window.location.href = '/index.php/index/Home/home'},1000);
+      setTimeout(function(){window.location.href = '/index.php/index/index/index'},1000);
     }
   },'json');
 }
 </script>
-</body>
-</html>

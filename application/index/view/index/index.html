@@ -1,25 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>手推车电脑配件商城</title>
-    <link type="text/css" rel="stylesheet" href="__STATIC__/css/index.css">
-    <script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
-</head>
-<body>
-<!--主导航栏的实现-->
-    <div class="top">
-        <div class="top1 w">
-            <a href="http://www.stc.net/index.php/index/Account/login">登录</a>
-            <a href="http://www.stc.net/index.php/index/Account/register">注册</a>
-        </div>
-        <div class="top2 w">
-            <a href="http://www.stc.net/index.php/index/Account/home">个人中心</a>
-            <a href="http://www.stc.net/index.php/index/Cart/cart">购物车</a>
-            <a href="http://www.stc.net">首页</a>
-        </div>
-    </div>
+{layout name="layout"/}
 <!--logo+搜索框的实现-->
+<link type="text/css" rel="stylesheet" href="__STATIC__/css/index.css">
     <div class="logo_search w">
         <div class="left">
             <p class="p1">手推车</p>
@@ -54,64 +35,33 @@
         <div class="right"></div>
     </div>
 </div>
-<!--底部1-->
-    <div class="bottom w">
-        <div class="bottom1">
-            <a href="">手推车电脑配件商城</a>
-            <a href="">手推车论坛</a>
-        </div>
-        <div class="bottom2">
-            <a href="">手推车手机维修网</a>
-            <a href="">手推车电子大世界</a>
-        </div>
-    </div>
-<!--footer-->
-    <div class="end">
-        <div class="end1 w">
-            <div class="end2">
-                <a href="">关于手推车</a>
-                <a href="">合作伙伴</a>
-                <a href="">营销中心</a>
-                <a href="">廉政举报</a>
-                <a href="">联系客服</a>
-                <a href="">诚征英才</a>
-                <a href="">联系我们</a>
-            </div>
-            <div class="end2"><a>增值电信业务许可证</a></div>
-            <div class="end2"><a>互联网电子配件经营许可证</a></div>
-            <div class="end2"><a>黑公网安备</a></div>
-        </div>
-    </div>
+<script type="text/javascript">
+  layui.use(['layer','laypage'],function(){
+    layer = layui.layer;
+    $ = layui.jquery;
+    laypage = layui.laypage;
 
-    <script type="text/javascript">
-    	layui.use(['layer','laypage'],function(){
-    		layer = layui.layer;
-    		$ = layui.jquery;
-    		laypage = layui.laypage;
-
-    		laypage.render({
-    				elem: 'pages'
-    				,count:{$data.data.total}
-    				,limit:{$data.pageSize}
-    				,curr:{$data.page}
-    			,jump: function(obj, first){
-    				if(!first){
-    					searchs(obj.curr);
-    				}
-    			}
-    		});
-    	});
+    laypage.render({
+        elem: 'pages'
+        ,count:{$data.data.total}
+        ,limit:{$data.pageSize}
+        ,curr:{$data.page}
+      ,jump: function(obj, first){
+        if(!first){
+          searchs(obj.curr);
+        }
+      }
+    });
+  });
 
 
-    	// 搜索
-    	function searchs(curpage){
-    		var wd = $.trim($('#wd').val());
-    		var url = "/index.php/index/goods/goods?page="+curpage;
-    		if(wd){
-    			url += '&wd='+wd;
-    		}
-    		window.location.href = url;
-    	}
-    </script>
-</body>
-</html>
+  // 搜索
+  function searchs(curpage){
+    var wd = $.trim($('#wd').val());
+    var url = "/index.php/index/goods/goods?page="+curpage;
+    if(wd){
+      url += '&wd='+wd;
+    }
+    window.location.href = url;
+  }
+</script>
