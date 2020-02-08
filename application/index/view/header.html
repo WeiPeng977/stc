@@ -16,7 +16,7 @@
         </div>
         <div class="top2 w">
             <a href="http://www.stc.net/index.php/index/Home/home">个人中心</a>
-            <a href="http://www.stc.net/index.php/index/Cart/cart">购物车</a>
+            <a href="http://www.stc.net/index.php/index/Cart/cart">购物车({$Think.session.cart.num})</a>
             <a href="http://www.stc.net">首页</a>
         </div>
 </div>
@@ -26,8 +26,6 @@
     var element = layui.element;
     $ = layui.jquery;
     layer = layui.layer;
-
-    resetMenuHeight();
   });
 
   // 退出

@@ -1,12 +1,13 @@
 {layout name="layout"/}
 <link rel="stylesheet" type="text/css" href="__STATIC__/css/cart.css">
+<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
 <!--搜索栏的实现-->
 <div class="search w">
     <div class="left"><p>购物车</p></div>
-    <div class="right">
-        <input type="text">
-        <input type="button" value="搜索">
-    </div>
+    <!-- <div class="right">
+        <input type="text" value="" id="wd">
+        <input type="button" value="搜索" onclick="searchs()">
+    </div> -->
 </div>
 <!-- 主体main实现 -->
 <div class="main w">
@@ -29,18 +30,20 @@
 	</div>
 	<div class="items w">
 		<div class="items_left">
-			{volist name="data.goods" id="vo"}
+			{volist name="data.data.lists" id="vo"}
 
 			<div class="items1">
-			  <input type="checkbox" name="">
+        <form>
+			  <input type="checkbox" id="" value="{$vo.id}">
 				<img src="__STATIC__/images/item.jpg">
-				<span>{$vo.title}</span>
+				<span><a href="/index.php/index/Goods/goodsDetails?goods_id={$vo.id}">{$vo.title}</a></span>
 				<div class="right">
 					<span>￥{$vo.price}</span>
 				<span><input type="button" name="" value="-"><input type="text" placeholder="1"><input type="button" name="" value="+"></span>
 				<span class="price">￥1199.00</span>
-				<span class="delete"><a href="">删除</a></span>
+				<span class="delete"><a href="javascript:void(0);" onclick="delete()">删除</a></span>
 				</div>
+        </form>
 			</div>
 			{/volist}
 
@@ -57,3 +60,34 @@
 		<input type="button" class="right" value="结算">
 	</div>
 </div>
+<div id="pages"></div>
+<script type="text/javascript">
+	layui.use(['layer','laypage'],function(){
+		layer = layui.layer;
+		$ = layui.jquery;
+		laypage = layui.laypage;
+
+		laypage.render({
+				elem: 'pages'
+				,count:{$data.data.total}
+				,limit:{$data.pageSize}
+				,curr:{$data.page}
+			,jump: function(obj, first){
+				if(!first){
+					searchs(obj.curr);
+				}
+			}
+		});
+	});
+
+
+	// 搜索
+	function searchs(curpage){
+		var wd = $.trim($('#wd').val());
+		var url = "/index.php/index/cart/cart?page="+curpage;
+		if(wd){
+			url += '&wd='+wd;
+		}
+		window.location.href = url;
+	}
+</script>

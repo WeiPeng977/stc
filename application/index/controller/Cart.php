@@ -2,21 +2,33 @@
 namespace app\index\controller;
 use think\Controller;
 use Util\data\Sysdb;
+use think\Db;
 
 class Cart extends BaseAdmin
 {
     public function cart()
     {
-        $data['pageSize'] = 4;
-        $data['page'] = max(1,(int)input('get.page'));
+
         $user_id = session('user.id');
         $goods_id = $this->db->table('cart')->where(array('user_id'=>$user_id))->lists();
-        $length = count($goods_id);
-        for ($i=0; $i<$length; $i++){
-            $goods[$i] =  $this->db->table('goods')->where(array('id'=>$goods_id[$i]['goods_id']))->item();
-        }
-        $data['goods'] = $goods;
+        $total = count($goods_id);
+        $data['pageSize'] = 4;
+        $data = Db::table('cart')
+        ->alias('c')
+        ->join('goods g','c.goods_id = g.id')
+        ->where('user_id','5')
+        ->paginate($data['pageSize'],$total);
+
+        $goods['total'] = $total;
+        $goods['lists'] = $data->items();
+        $goods['pages'] = $data->render();
+        $data['pageSize'] = 4;
+        $data['page'] = max(1,(int)input('get.page'));
+        $data['data'] = $goods;
+        // $data['data']['total'] = $length;
         $this->assign('data',$data);
+        $cart['num'] = $total;
+        session('cart',$cart);
         return $this->fetch();
     }
     public function doput(){
@@ -38,4 +50,10 @@ class Cart extends BaseAdmin
       }
       exit(json_encode(array('code'=>0,'msg'=>'添加成功')));
     }
+
+    public function delete(){
+  		$id = (int)input('post.id');
+  		$this->db->table('cart')->where(array('id'=>$id))->delete();
+  		exit(json_encode(array('code'=>0,'msg'=>'删除成功')));
+  	}
 }

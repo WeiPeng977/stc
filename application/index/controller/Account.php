@@ -38,6 +38,7 @@ class Account extends Controller
 
   	public function logout(){
   		session('user',null);
+      session('cart',null);
   		exit(json_encode(array('code'=>0,'msg'=>'退出成功')));
   	}
 
