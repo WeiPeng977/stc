@@ -19,7 +19,7 @@ class Home extends BaseAdmin
     public function domodifytelephone(){
 
 
-       $id = trim(input('post.id'));
+       $uid = trim(input('post.uid'));
        $telephone = trim(input('post.telephone'));
        $n_telephone = trim(input('post.n_telephone'));
        $v_telephone = trim(input('post.v_telephone'));
@@ -39,7 +39,7 @@ class Home extends BaseAdmin
       $data['telephone'] = $n_telephone;
 
 
-      $res = $this->db->table('user')->where(array('id'=>$id))->update($data);
+      $res = $this->db->table('user')->where(array('uid'=>$uid))->update($data);
 
 
         //$data['add_time'] = time();
@@ -58,7 +58,7 @@ class Home extends BaseAdmin
     public function domodifypass(){
 
        $username = trim(input('post.username'));
-       $id = trim(input('post.id'));
+       $uid = trim(input('post.uid'));
        $p_pwd = trim(input('post.p_pwd'));
        $pwd = trim(input('post.pwd'));
        $n_pwd = trim(input('post.n_pwd'));
@@ -85,7 +85,7 @@ class Home extends BaseAdmin
       }
 
 
-      $res = $this->db->table('user')->where(array('id'=>$id))->update($data);
+      $res = $this->db->table('user')->where(array('uid'=>$uid))->update($data);
 
 
         //$data['add_time'] = time();
@@ -102,7 +102,7 @@ class Home extends BaseAdmin
         return $this->fetch();
     }
     public function domodifyinformation(){
-       $id = trim(input('post.id'));
+       $uid = trim(input('post.uid'));
        $truename = trim(input('post.truename'));
        $sex = trim(input('post.sex'));
        $age = trim(input('post.age'));
@@ -126,7 +126,7 @@ class Home extends BaseAdmin
       $data['date'] = $date;
 
 
-      $res = $this->db->table('user')->where(array('id'=>$id))->update($data);
+      $res = $this->db->table('user')->where(array('uid'=>$uid))->update($data);
 
 
         //$data['add_time'] = time();

@@ -9,13 +9,13 @@ class Cart extends BaseAdmin
     public function cart()
     {
 
-        $user_id = session('user.id');
+        $user_id = session('user.uid');
         $goods_id = $this->db->table('cart')->where(array('user_id'=>$user_id))->lists();
         $total = count($goods_id);
         $data['pageSize'] = 4;
         $data = Db::table('cart')
         ->alias('c')
-        ->join('goods g','c.goods_id = g.id')
+        ->join('goods g','c.goods_id = g.gid')
         ->where('user_id','5')
         ->paginate($data['pageSize'],$total);
 
@@ -33,7 +33,7 @@ class Cart extends BaseAdmin
     }
     public function doput(){
        // exit(json_encode(array('code'=>1,'msg'=>'test')));
-       $data['user_id'] = trim(input('id'));
+       $data['user_id'] = trim(input('uid'));
        $data['goods_id'] = trim(input('goods_id'));
       // exit(json_encode(array('code'=>1,'msg'=>'$repwd')));
       $res = true;
@@ -52,8 +52,8 @@ class Cart extends BaseAdmin
     }
 
     public function delete(){
-  		$id = (int)input('post.id');
-  		$this->db->table('cart')->where(array('id'=>$id))->delete();
+  		$cid = (int)input('post.cid');
+  		$this->db->table('cart')->where(array('cid'=>$cid))->delete();
   		exit(json_encode(array('code'=>0,'msg'=>'删除成功')));
   	}
 }

@@ -1,3 +1,4 @@
+{__NOLAYOUT__}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
         <p>个人资料</p>
         <form>
         <div class="information">
-        <input type="hidden" id="id" value="{$user.id}">
+        <input type="hidden" id="uid" value="{$user.uid}">
         姓名：<input type="text" id="truename" class="name" value="{$user.truename}"><br />
         性别：<input type="text" id="sex" class="sex" value="{$user.sex}"><br />
         年龄：<input type="text" id="age" class="age" value="{$user.age}"><br />
@@ -37,7 +38,7 @@
       });
     });
   function domodifyinformation(){
-    var id = $.trim($('#id').val());
+    var uid = $.trim($('#uid').val());
     var truename = $.trim($('#truename').val());
     var sex = $.trim($('#sex').val());
     var age = $.trim($('#age').val());
@@ -58,7 +59,7 @@
       layer.alert('请输入出生日期',{icon:2});
       return;
     }
-    $.post('/index.php/index/Home/domodifyinformation',{'truename':truename,'sex':sex,'age':age,'id':id,'date':date},function(res){
+    $.post('/index.php/index/Home/domodifyinformation',{'truename':truename,'sex':sex,'age':age,'uid':uid,'date':date},function(res){
       if(res.code>0){
         layer.alert(res.msg,{icon:2});
       }else{

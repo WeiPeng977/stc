@@ -1,3 +1,4 @@
+{__NOLAYOUT__}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
             <p>修改密码</p>
             <form>
             <div class="inform">
-                <input type="hidden" id="id" value="{$user.id}">
+                <input type="hidden" id="uid" value="{$user.uid}">
                 <input type="hidden" id="username" value="{$user.username}">
                 <input type="hidden" id="p_pwd" value="{$user.password}">
                 <input type="password" id="pwd" placeholder="原密码" class="user">
@@ -40,7 +41,7 @@
         });
       });
     function domodifypass(){
-      var id = $.trim($('#id').val());
+      var uid = $.trim($('#uid').val());
       var username = $.trim($('#username').val());
       var p_pwd = $.trim($('#p_pwd').val());
       var pwd = $.trim($('#pwd').val());
@@ -62,7 +63,7 @@
           layer.alert('两次密码输入不一致',{icon:2});
         return;
       }
-      $.post('/index.php/index/Home/domodifypass',{'pwd':pwd,'n_pwd':n_pwd,'v_pwd':v_pwd,'id':id,'username':username,'p_pwd':p_pwd},function(res){
+      $.post('/index.php/index/Home/domodifypass',{'pwd':pwd,'n_pwd':n_pwd,'v_pwd':v_pwd,'uid':uid,'username':username,'p_pwd':p_pwd},function(res){
         if(res.code>0){
           layer.alert(res.msg,{icon:2});
         }else{

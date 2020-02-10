@@ -36,10 +36,10 @@
 			<span>数量</span>
 			<span style="padding-left: 49px;">-&nbsp;&nbsp;0&nbsp;&nbsp;+</span>
 		</div>
-		<input type="hidden" id="id" value="{$data.user.id}">
+		<input type="hidden" id="uid" value="{$data.user.uid}">
 		<input type="hidden" id="goods_id" value="{$data.goods_id}">
 		<div class="m_btn">
-			  <input type="button" value="立即购买" class="btn1"  onclick="dobuy()">
+			  <input type="button" value="立即购买" class="btn1"  onclick="order({$data.goods_id})">
 				<input type="button" value="加入购物车" class="btn2"  onclick="doput()">
 		</div>
 	</div>
@@ -51,21 +51,26 @@
     $ = layui.jquery;
     layer = layui.layer;
 
-    // 用户名控件获取焦点
-    $('#username').focus();
-    // 回车登录
-    $('input').keydown(function(e){
-      if(e.keyCode == 13){
-        dologin();
-      }
-    });
   });
+
+	function order(){
+    var goods_id = $.trim($('#goods_id').val());
+    layer.open({
+			type: 2,
+			title: '生成订单',
+			shade: 0.3,
+			area: ['800px', '500px'],
+			content: '/index.php/index/Order/add?gid='+ goods_id
+		});
+  }
+
 function doput(){
-  var id = $.trim($('#id').val());
+  var uid = $.trim($('#uid').val());
   var goods_id = $.trim($('#goods_id').val());
-  $.post('/index.php/index/Cart/doput',{'id':id,'goods_id':goods_id},function(res){
+  $.post('/index.php/index/Cart/doput',{'uid':uid,'goods_id':goods_id},function(res){
     if(res.code>0){
       layer.alert(res.msg,{icon:2});
+
     }else{
       layer.msg(res.msg);
     }

@@ -23,7 +23,7 @@ class Goods extends Controller
             $where['type_id'] = $data['type_id'];
         }
 
-    		$data['data'] = $this->db->table('goods')->where($where)->order('id desc')->pages($data['pageSize']);
+    		$data['data'] = $this->db->table('goods')->where($where)->order('gid desc')->pages($data['pageSize']);
         $this->assign('data',$data);
         return $this->fetch();
     }
@@ -31,7 +31,7 @@ class Goods extends Controller
     {
         $data['user'] = session('user');
         $data['goods_id'] = (int)input('get.goods_id');
-        $data['data'] = $this->db->table('goods')->where(array('id'=>$data['goods_id']))->item();
+        $data['data'] = $this->db->table('goods')->where(array('gid'=>$data['goods_id']))->item();
         $this->assign('data',$data);
         return $this->fetch();
     }

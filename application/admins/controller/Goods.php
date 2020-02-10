@@ -25,7 +25,7 @@ class Goods extends BaseAdmin{
 		return $this->fetch();
 	}
 
-	// 添加影片
+	// 添加商品
 	public function add(){
 		$data['type'] = $this->db->table('goods_label')->where(array('flag'=>'type'))->lists();
 

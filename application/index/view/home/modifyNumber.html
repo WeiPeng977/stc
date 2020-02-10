@@ -1,3 +1,4 @@
+{__NOLAYOUT__}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
         <p>修改手机号</p>
         <form>
         <div class="inform">
-            <input type="hidden" id="id" value="{$user.id}">
+            <input type="hidden" id="uid" value="{$user.uid}">
             <input type="hidden" id="p_telephone" value="{$user.telephone}">
             <input type="text" id="telephone" placeholder="原手机号" class="user">
             <input type="text" id="n_telephone" placeholder="新手机号">
@@ -39,7 +40,7 @@
     });
   });
 function domodifytelephone(){
-  var id = $.trim($('#id').val());
+  var uid = $.trim($('#uid').val());
   var p_telephone = $.trim($('#p_telephone').val());
   var telephone = $.trim($('#telephone').val());
   var n_telephone = $.trim($('#n_telephone').val());
@@ -64,7 +65,7 @@ function domodifytelephone(){
       layer.alert('两次输入手机号不一致',{icon:2});
     return;
   }
-  $.post('/index.php/index/Home/domodifytelephone',{'telephone':telephone,'n_telephone':n_telephone,'v_telephone':v_telephone,'id':id},function(res){
+  $.post('/index.php/index/Home/domodifytelephone',{'telephone':telephone,'n_telephone':n_telephone,'v_telephone':v_telephone,'uid':uid},function(res){
     if(res.code>0){
       layer.alert(res.msg,{icon:2});
     }else{
