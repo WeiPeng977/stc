@@ -4,7 +4,7 @@ use think\Controller;
 
 class Order extends BaseAdmin
 {
-    public function order_all()
+    public function order_list()
     {
         return $this->fetch();
     }
@@ -22,6 +22,16 @@ class Order extends BaseAdmin
     }
     public function order()
     {
+        $uid = session('user.uid');
+        $data['pageSize'] = 2;
+    		$data['page'] = max(1,(int)input('get.page'));
+
+    		$data['wd'] = trim(input('get.wd'));
+    		$where = array();
+    		$data['wd'] && $where = 'title like "%'.$data['wd'].'%"';
+        $where['user_id'] = $uid;
+    		$data['data'] = $this->db->table('order')->where($where)->order('oid desc')->pages($data['pageSize']);
+        $this->assign('data',$data);
         return $this->fetch();
     }
     public function add()

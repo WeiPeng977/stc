@@ -12,26 +12,26 @@
 </head>
 <body style="padding: 10px;">
 	<div class="header">
-		<span>商品列表</span>
-		<button class="layui-btn layui-btn-sm" onclick="add()">添加</button>
+		<span>订单列表</span>
 		<div></div>
 	</div>
 	<div class="layui-form-item" style="margin-top: 10px;">
 		<div class="layui-input-inline">
-			<input type="text" class="layui-input" value="{$data.wd}" id="wd" placeholder="请输入商品名称搜索">
+			<input type="text" class="layui-input" value="{$data.wd}" id="wd" placeholder="请输入用户ID进行搜索">
 		</div>
 		<button class="layui-btn layui-btn-primary" onclick="searchs()"><i class="layui-icon">&#xe615;</i>搜索</button>
 	</div>
 	<table class="layui-table">
 		<thead>
 			<tr>
-				<th>ID</th>
-				<th>图片</th>
-				<th>名称</th>
-				<th>价格</th>
-				<th>库存</th>
-				<th>种类</th>
-				<th>状态</th>
+				<th>订单ID</th>
+        <th>用户ID</th>
+				<th>商品ID</th>
+				<th>收货人</th>
+				<th>联系方式</th>
+				<th>收货地址</th>
+				<th>订单总价</th>
+				<th>订单状态</th>
 				<th>添加时间</th>
 				<th>操作</th>
 			</tr>
@@ -39,17 +39,18 @@
 		<tbody>
 			{volist name="data.data.lists" id='vo'}
 			<tr>
-				<td>{$vo.gid}</td>
-				<td><img src="{$vo.img}" style="height: 30px;"></td>
-				<td>{$vo.title}</td>
-				<td>{$vo.price}</td>
-				<td>{$vo.stock}</td>
-				<td>{:isset($data['labels'][$vo['type_id']])?$data['labels'][$vo['type_id']]['title']:''}</td>
-				<td>{$vo.status}</td>
+				<td>{$vo.oid}</td>
+				<td>{$vo.user_id}</td>
+				<td>{$vo.goods_ids}</td>
+				<td>{$vo.receiver}</td>
+				<td>{$vo.phone}</td>
+				<td>{$vo.address}</td>
+				<td>￥{$vo.price}</td>
+        <td>{$vo.status}</td>
 				<td>{:date('Y-m-d H:i:s',$vo.add_time)}</td>
 				<td>
-					<button class="layui-btn layui-btn-xs" onclick="add({$vo.gid})">编辑</button>
-					<button class="layui-btn layui-btn-danger layui-btn-xs" onclick="del({$vo.gid})">删除</button>
+					<button class="layui-btn layui-btn-xs" onclick="add({$vo.oid})">编辑</button>
+					<button class="layui-btn layui-btn-danger layui-btn-xs" onclick="del({$vo.oid})">删除</button>
 				</td>
 			</tr>
 			{/volist}
@@ -77,23 +78,23 @@
 	});
 
 	// 添加编辑
-	function add(gid){
+	function add(oid){
 		layer.open({
 			type: 2,
-			title: gid>0?'编辑商品':'添加商品',
+			title: '编辑订单',
 			shade: 0.3,
 			area: ['800px', '500px'],
-			content: '/admins.php/admins/goods/add?gid='+gid
+			content: '/admins.php/admins/order/add?oid='+oid
 		});
 	}
 
 	// 删除
-	function del(gid){
+	function del(oid){
 		layer.confirm('确定要删除吗？', {
 			icon:3,
 			btn: ['确定','取消']
 		}, function(){
-			$.post('/admins.php/admins/goods/delete',{'gid':gid},function(res){
+			$.post('/admins.php/admins/goods/delete',{'oid':oid},function(res){
 				if(res.code>0){
 					layer.alert(res.msg,{icon:2});
 				}else{

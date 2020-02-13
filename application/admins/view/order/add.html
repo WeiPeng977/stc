@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>编辑订单</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
+	<script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
+</head>
+<body style="padding: 10px;">
+	<form class="layui-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">订单ID</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="oid" value="{$data.item.oid}" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">收货人</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="receiver" value="{$data.item.receiver}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">联系方式</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="phone" value="{$data.item.phone}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">收货地址</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="address" value="{$data.item.address}">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">价格</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="price" value="{$data.item.price}">
+			</div>
+		</div>
+	</form>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button class="layui-btn" onclick="save()">保存</button>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	layui.use(['form','layer'],function(){
+		$ = layui.jquery;
+		var form = layui.form;
+		layer = layui.layer;
+
+
+	});
+
+	// 保存
+	function save(){
+		var title = $.trim($('input[name="title"]').val());
+		if(title == ''){
+			layer.msg('请输入商品名称',{'icon':2,'anim':6});
+			return;
+		}
+		$.post('/admins.php/admins/goods/save',$('form').serialize(),function(res){
+			if(res.code>0){
+				layer.msg(res.msg,{'icon':2,'anim':2});
+			}else{
+				layer.msg(res.msg,{'icon':1});
+				setTimeout(function(){parent.window.location.reload();},1000);
+			}
+		},'json');
+	}
+</script>

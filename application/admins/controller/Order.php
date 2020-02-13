@@ -1,11 +1,11 @@
 <?php
 /**
-* 商品管理
+* 订单管理
 */
 namespace app\admins\controller;
 use app\admins\controller\BaseAdmin;
 
-class Goods extends BaseAdmin{
+class Order extends BaseAdmin{
 	// 影片列表
 	public function index(){
 		$data['pageSize'] = 15;
@@ -14,24 +14,23 @@ class Goods extends BaseAdmin{
 		$data['wd'] = trim(input('get.wd'));
 		$where = array();
 		$data['wd'] && $where = 'title like "%'.$data['wd'].'%"';
-		$data['data'] = $this->db->table('goods')->where($where)->order('gid desc')->pages($data['pageSize']);
+		$data['data'] = $this->db->table('order')->where($where)->order('oid desc')->pages($data['pageSize']);
 
-		$label_ids = [];
-		foreach ($data['data']['lists'] as $item) {
-			!in_array($item['type_id'],$label_ids) && $label_ids[] = $item['type_id'];
-		}
-		$label_ids && $data['labels'] = $this->db->table('goods_label')->where('id in('.implode(',',$label_ids).')')->cates('id');
+		// $label_ids = [];
+		// foreach ($data['data']['lists'] as $item) {
+		// 	!in_array($item['type_id'],$label_ids) && $label_ids[] = $item['type_id'];
+		// }
+		// $label_ids && $data['labels'] = $this->db->table('goods_label')->where('id in('.implode(',',$label_ids).')')->cates('id');
 		$this->assign('data',$data);
 		return $this->fetch();
 	}
 
-	// 添加商品
+	// 编辑订单
 	public function add(){
-		$data['type'] = $this->db->table('goods_label')->where(array('flag'=>'type'))->lists();
 
-		$gid = (int)input('get.gid');
+		$oid = (int)input('get.oid');
 
-		$data['item'] = $this->db->table('goods')->where(array('gid'=>$gid))->item();
+		$data['item'] = $this->db->table('order')->where(array('oid'=>$oid))->item();
 
 		$this->assign('data',$data);
 		return $this->fetch();
