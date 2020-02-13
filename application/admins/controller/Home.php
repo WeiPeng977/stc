@@ -19,10 +19,7 @@ class Home extends BaseAdmin
 			$menus = $this->db->table('admin_menus')->where($where)->cates('mid');
 			$menus && $menus = $this->gettreeitems($menus);
 		}
-		$site = $this->db->table('sites')->where(array('names'=>'site'))->item();
-		$site && $site['values'] = json_decode($site['values']);
 
-		$this->assign('site',$site);
 		$this->assign('role',$role);
 		$this->assign('menus',$menus);
 		return $this->fetch();

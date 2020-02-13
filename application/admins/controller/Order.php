@@ -6,7 +6,7 @@ namespace app\admins\controller;
 use app\admins\controller\BaseAdmin;
 
 class Order extends BaseAdmin{
-	// 影片列表
+	// 订单列表
 	public function index(){
 		$data['pageSize'] = 15;
 		$data['page'] = max(1,(int)input('get.page'));
@@ -16,11 +16,6 @@ class Order extends BaseAdmin{
 		$data['wd'] && $where = 'title like "%'.$data['wd'].'%"';
 		$data['data'] = $this->db->table('order')->where($where)->order('oid desc')->pages($data['pageSize']);
 
-		// $label_ids = [];
-		// foreach ($data['data']['lists'] as $item) {
-		// 	!in_array($item['type_id'],$label_ids) && $label_ids[] = $item['type_id'];
-		// }
-		// $label_ids && $data['labels'] = $this->db->table('goods_label')->where('id in('.implode(',',$label_ids).')')->cates('id');
 		$this->assign('data',$data);
 		return $this->fetch();
 	}
@@ -58,20 +53,6 @@ class Order extends BaseAdmin{
 		exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
 	}
 
-	// 图片上传
-	public function upload_img(){
-		$file = request()->file('file');
-		if($file==null){
-			exit(json_encode(array('code'=>1,'msg'=>'没有文件上传')));
-		}
-		$info = $file->move(ROOT_PATH.'public'.DS.'uploads');
-		$ext = ($info->getExtension());
-		if(!in_array($ext,array('jpg','jpeg','gif','png'))){
-			exit(json_encode(array('code'=>1,'msg'=>'文件格式不支持')));
-		}
-		$img = '/uploads/'.$info->getSaveName();
-		exit(json_encode(array('code'=>0,'msg'=>$img)));
-	}
 
 	// 删除
 	public function delete(){

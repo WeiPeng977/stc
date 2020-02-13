@@ -1,13 +1,13 @@
 <?php
 /**
-* 标签管理
+* 分类管理
 */
 namespace app\admins\controller;
 use app\admins\controller\BaseAdmin;
 
 class Labels extends BaseAdmin{
 
-	// 频道管理
+	// 分类管理
 	public function type(){
 		$type = $this->db->table('goods_label')->where(array('flag'=>'type'))->lists();
 		$this->assign('data',$type);

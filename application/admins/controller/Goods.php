@@ -6,7 +6,7 @@ namespace app\admins\controller;
 use app\admins\controller\BaseAdmin;
 
 class Goods extends BaseAdmin{
-	// 影片列表
+	// 商品列表
 	public function index(){
 		$data['pageSize'] = 15;
 		$data['page'] = max(1,(int)input('get.page'));
