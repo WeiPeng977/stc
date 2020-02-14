@@ -125,13 +125,13 @@ ul{
     padding-left: 92px;
 }
 .items{
-    height: 525px;
+    height: 527px;
 
 }
 .items_left{
     float: left;
-    width: 990px;
-    height: 525px;
+    width: 988px;
+    height: 527px;
     border: 1px solid #cccccc;
 }
 .items1{
@@ -190,20 +190,16 @@ ul{
   padding-left: 6px;
 }
 
-.items2{
-   height: 131px;
-}
 .items_right{
     float: right;
     width: 195px;
-    height: 525px;
+    height: 527px;
     border: 1px solid #cccccc;
 }
 .settlement{
     width: 990px;
     height: 50px;
     background-color: #e5e5e5;
-    margin-top: 16px;
     line-height: 50px;
 }
 .settlement .left{

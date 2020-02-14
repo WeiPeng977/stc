@@ -86,46 +86,6 @@ input[placeholder]{
     margin-top: 56px;
     /*background-color:#0086ff;*/
 }
-/*分类区的实现*/
-.one{
-    width: 100%;
-    background-color: #f4f4f4;
-}
-.nav{
-    height: 30px;
-    /*border: 1px solid #0054ff;*/
-}
-.nav .left{
-    float: left;
-    width: 200px;
-    height: 30px;
-    background-color: #0054ff;
-}
-.nav .center{
-    float: left;
-    width: 800px;
-    height: 30px;
-    background-color: #0086ff;
-}
-.nav .right{
-    float: right;
-    width: 200px;
-    height: 30px;
-    background-color: #0054ff;
-}
-.nav p{
-    line-height: 30px;
-    font-size: 16px;
-    text-align: center;
-    color: white;
-}
-.nav span{
-    line-height: 30px;
-    font-size: 16px;
-    text-align: center;
-    color: white;
-    margin-left: 18px;
-}
 
 /*底部1*/
 .bottom{

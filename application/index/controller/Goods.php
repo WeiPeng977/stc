@@ -12,7 +12,7 @@ class Goods extends Controller
     public function goods()
     {
         $data['type_id'] = (int)input('get.type_id');
-        $data['pageSize'] = 10;
+        $data['pageSize'] = 4;
     		$data['page'] = max(1,(int)input('get.page'));
 
     		$data['wd'] = trim(input('get.wd'));

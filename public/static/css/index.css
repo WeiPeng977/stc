@@ -57,13 +57,7 @@ ul{
     padding-top: 5px;
     margin-left: 23px;
 }
-/*.logo_search .center{
-    float: left;
-    width: 507px;
-    margin-top: 55px;
-    margin-left: 160px;
-    background-color: pink;
-}*/
+
 .logo_search .search{
     float: left;
     width: 554px;
@@ -89,7 +83,6 @@ input[placeholder]{
 /*分类区的实现*/
 .one{
     width: 100%;
-    background-color: #f4f4f4;
 }
 .nav{
     height: 30px;
@@ -129,7 +122,6 @@ input[placeholder]{
 /*主体main的实现*/
 .two{
     width: 100%;
-    background-color: #f4f4f4;
 }
 .main{
     height: 600px;

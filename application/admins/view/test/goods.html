@@ -1,19 +1,18 @@
-{layout name="layout"/}
-	<link rel="stylesheet" type="text/css" href="__STATIC__/css/goods.css">
-	<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
-<!--搜索栏的实现-->
-<div class="search w">
-    <div class="left"><p>手推车</p></div>
-    <div class="right">
-        <input type="text" value="{$data.wd}" id="wd">
-        <input type="button" value="搜索" onclick="searchs()">
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/goods.css">
+		<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
+	</head>
+	<body>
+
 <!-- 主体main -->
 <div class="main w">
 	<div class="m_left">
 		{volist name="data.data.lists" id="vo"}
-		<div class="product1" style=" height:141px;">
+		<div class="product1" style=" height: 141px;">
 			<img src="{$vo.img}">
 			<span>
 				<a href="/index.php/index/Goods/goodsDetails?goods_id={$vo.gid}">{$vo.title}</a>
@@ -56,3 +55,6 @@
 		window.location.href = url;
 	}
 </script>
+
+</body>
+</html>
