@@ -4,22 +4,6 @@ use think\Controller;
 
 class Order extends BaseAdmin
 {
-    public function order_list()
-    {
-        return $this->fetch();
-    }
-    public function order_payment()
-    {
-        return $this->fetch();
-    }
-    public function order_receive()
-    {
-        return $this->fetch();
-    }
-    public function order_send()
-    {
-        return $this->fetch();
-    }
     public function order()
     {
         $uid = session('user.uid');
