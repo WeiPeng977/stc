@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>登录</title>
@@ -48,12 +48,6 @@
 				}
 			});
 		});
-
-		// 重新生成验证码
-		function reloadImg(){
-			$('#img').attr('src','{:captcha_src()}?rand='+Math.random());
-		}
-
 		// 登录
 		function dologin(){
 			var username = $.trim($('#username').val());

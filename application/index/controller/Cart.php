@@ -22,6 +22,7 @@ class Cart extends BaseAdmin
         $goods['total'] = $total;
         $goods['lists'] = $data->items();
         $goods['pages'] = $data->render();
+        $goods['location']['cart_right'] = $this->db->table('slide')->where(array('location'=>'cart_right'))->item();
         $data['pageSize'] = 4;
         $data['page'] = max(1,(int)input('get.page'));
         $data['data'] = $goods;

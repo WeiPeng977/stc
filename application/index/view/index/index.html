@@ -1,6 +1,7 @@
 {layout name="layout"/}
 <!--logo+搜索框的实现-->
 <link type="text/css" rel="stylesheet" href="__STATIC__/css/index.css">
+  <link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
     <div class="logo_search w">
         <div class="left">
             <p class="p1">手推车</p>
@@ -30,16 +31,32 @@
             </ul>
         </div>
         <div class="center">
-            <img src="__STATIC__/images/banner.png">
+          <div class="layui-carousel" id="test1" lay-filter="test1">
+            <div carousel-item="">
+              {volist name="data.location.index_banner" id="bvo"}
+              <div><img src="{$bvo.img}"></div>
+              {/volist}
+            </div>
+          </div>
         </div>
-        <div class="right"></div>
+        <div class="right"><img style="heith:579px; width:178px;"src="{$data.location.index_right.img}"></div>
     </div>
 </div>
 <script type="text/javascript">
-  layui.use(['layer','laypage'],function(){
+  layui.use(['layer','laypage','carousel'],function(){
     layer = layui.layer;
     $ = layui.jquery;
     laypage = layui.laypage;
+    var carousel = layui.carousel;
+
+    //常规轮播
+    carousel.render({
+      elem: '#test1'
+      ,arrow: 'always'
+      ,width: '800px'
+      ,height: '600px'
+      ,interval: 5000
+    });
 
     laypage.render({
         elem: 'pages'

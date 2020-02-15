@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>添加幻灯片</title>
+	<title>添加图片</title>
 	<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
 	<script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
 </head>
@@ -27,7 +27,20 @@
 				<input type="text" class="layui-input" name="url" value="{$data.url}">
 			</div>
 		</div>
+
 		<div class="layui-form-item">
+    <label class="layui-form-label">图片位置</label>
+    <div class="layui-input-block">
+      <select name="location">
+        <option value="index_banner" selected="" >主页Banner</option>
+        <option value="index_right">主页右侧</option>
+				<option value="goods_right">商品右侧</option>
+				<option value="cart_right">购物车右侧</option>
+      </select>
+    </div>
+  </div>
+
+    <div class="layui-form-item">
 			<label class="layui-form-label">图片上传</label>
 			<div class="layui-input-block">
 				<button class="layui-btn layui-btn-sm" id="upload_img" onclick="return false;">上传</button>
@@ -35,6 +48,7 @@
 				<input type="hidden" name="img" value="{$data.img}" />
 			</div>
 		</div>
+
 	</form>
 	<hr />
 	<div class="layui-form-item">
@@ -45,14 +59,15 @@
 </body>
 </html>
 <script type="text/javascript">
-	layui.use(['layer','upload'],function(){
+	layui.use(['form','layer','upload'],function(){
 		layer = layui.layer;
 		upload = layui.upload;
+		var form = layui.form;
 		$ = layui.jquery;
 
 		var uploadInst = upload.render({
 		    elem: '#upload_img' //绑定元素
-		    ,url: '/admins.php/admins/video/upload_img' //上传接口
+		    ,url: '/admins.php/admins/Goods/upload_img' //上传接口
 		    ,done: function(res){
 		      $('#preview_img').attr('src',res.msg);
 		      $('input[name="img"]').val(res.msg);
@@ -68,6 +83,7 @@
 		var title = $.trim($('input[name="title"]').val());
 		var url = $.trim($('input[name="url"]').val());
 		var img = $.trim($('input[name="img"]').val());
+		var location = $.trim($('input[name="location"]').val());
 		if(title==''){
 			layer.msg('请输入标题',{'icon':2,'anim':6});
 			return;

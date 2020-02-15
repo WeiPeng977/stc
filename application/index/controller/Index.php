@@ -23,9 +23,13 @@ class Index extends Controller
       $this->assign('data',$data);
 
       $type_list = $this->db->table('goods_label')->where(array('flag'=>'type'))->order('ord asc')->pages(16);
+
+      $data['location']['index_banner'] = $this->db->table('slide')->where(array('location'=>'index_banner'))->lists();
+      $data['location']['index_right'] = $this->db->table('slide')->where(array('location'=>'index_right'))->item();
+
       $this->assign('type_list',$type_list['lists']);
       $this->assign('data',$data);
       return $this->fetch();
     }
-  
+
 }

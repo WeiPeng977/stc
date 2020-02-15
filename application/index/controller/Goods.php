@@ -24,6 +24,7 @@ class Goods extends Controller
         }
 
     		$data['data'] = $this->db->table('goods')->where($where)->order('gid desc')->pages($data['pageSize']);
+        $data['location']['goods_right'] = $this->db->table('slide')->where(array('location'=>'goods_right'))->item();
         $this->assign('data',$data);
         return $this->fetch();
     }

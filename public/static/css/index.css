@@ -154,10 +154,10 @@ input[placeholder]{
     border-top: none;
     background-color: white;
 }
-.main ul{
+.main .left ul{
     margin-top: 10px;
 }
-.main li{
+.main .left li{
     text-align: center;
     font-size: 14px;
     padding-bottom: 18px;

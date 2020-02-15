@@ -9,7 +9,7 @@ class Slide extends BaseAdmin{
 
 	// 首页首屏
 	public function index(){
-		$data = $this->db->table('slide')->where(array('type'=>0))->lists();
+		$data = $this->db->table('slide')->where()->lists();
 		$this->assign('data',$data);
 		return $this->fetch();
 	}
@@ -25,12 +25,11 @@ class Slide extends BaseAdmin{
 
 	public function save(){
 		$id = (int)input('post.id');
-		$data['type'] = (int)input('post.type');
 		$data['ord'] = (int)input('post.ord');
 		$data['title'] = trim(input('post.title'));
 		$data['url'] = trim(input('post.url'));
 		$data['img'] = input('post.img');
-
+		$data['location'] = trim(input('post.location'));
 		if($data['title']=='' || $data['url']=='' || $data['img']==''){
 			exit(json_encode(array('code'=>1,'msg'=>'数据不能为空')));
 		}
@@ -39,7 +38,7 @@ class Slide extends BaseAdmin{
 		}else{
 			$this->db->table('slide')->insert($data);
 		}
-		
+
 		exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
 	}
 
