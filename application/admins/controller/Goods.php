@@ -76,8 +76,8 @@ class Goods extends BaseAdmin{
 
 	// 删除
 	public function delete(){
-		$id = (int)input('post.id');
-		$this->db->table('goods')->where(array('id'=>$id))->delete();
+		$gid = (int)input('post.gid');
+		$this->db->table('goods')->where(array('gid'=>$gid))->delete();
 		exit(json_encode(array('code'=>0,'msg'=>'删除成功')));
 	}
 }
