@@ -41,7 +41,7 @@
 				<span><a href="/index.php/index/Goods/goodsDetails?goods_id={$vo.gid}">{$vo.title}</a></span>
 				<div class="right">
 					<span>￥{$vo.price}</span>
-				<span><input type="button" name="" value="-"><input type="text" placeholder="1"><input type="button" name="" value="+"></span>
+				<span><input type="number" name="num" value="0"; style="width:40px;"></span>
 				<span class="price">￥1199.00</span>
 				<span class="delete"><a href="javascript:void(0);" onclick="del({$vo.cid})">删除</a></span>
 				</div>
@@ -90,12 +90,35 @@
 	  id_array.push($(this).val());//向数组中添加元素
     });
     var chapterstr = id_array.join(',');//将数组元素连接起来以构建一个字符串
+
+    var num_array=new Array();
+    var all_goods=new Array();
+    $('input[name="goods"]').each(function(){
+
+    all_goods.push($(this).val());
+    });
+    $('input[name="num"]').each(function(){
+
+    num_array.push($(this).val());
+    });
+    var numstr = num_array.join(',');//将数组元素连接起来以构建一个字符串
+    var allstr = all_goods.join(',');
+
+
+    var length = id_array.length;
+    for(i=0;i<length;i++){
+      for(j=0;j<4;j++){
+        
+      }
+    }
+    alert(length);
+
     layer.open({
 			type: 2,
 			title: '生成订单',
 			shade: 0.3,
 			area: ['800px', '500px'],
-			content: '/index.php/index/Order/add?gid='+ chapterstr
+			content: '/index.php/index/Order/add?gid='+ chapterstr + '&allstr=' + allstr + '&numstr=' + numstr
 		});
   }
   //删除

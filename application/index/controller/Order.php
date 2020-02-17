@@ -27,14 +27,39 @@ class Order extends BaseAdmin
     }
     public function add()
     {
+        $allstr = (String)input('get.allstr');
+        $numstr = (String)input('get.numstr');
         $gid = (String)input('get.gid');
+        $allstrs = explode(",",$allstr);
+        $numstrs = explode(",",$numstr);
         $gids = explode(",",$gid);
         $length = count($gids);
+        $sequence = []; //商品所在当前页面中的次序
+        $num = [];
+
+        for($j=0;$j<$length;$j++){
+          for($i=0;$i<4;$i++){
+            if($allstrs[$i] == $gids[$j]){
+              $sequence[] = $i + 1;
+            }
+          }
+        }
+
+        for($i=0;$i<count($gids);$i++){
+          $num[] = $numstrs[$sequence[$i]];
+        }
+
+       $data['num'] = $num;
+       var_dump($num);
+
+
+
         $price = 0;
         for($i=0;$i<$length;$i++){
             $goods[$i] = $this->db->table('goods')->where(array('gid'=>$gids[$i]))->item();
             $price = $price + $goods[$i]['price'];
         }
+        
         $data['gid'] = $gid;
         $data['goods'] = $goods;
         $data['price'] = $price;

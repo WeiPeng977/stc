@@ -138,7 +138,7 @@ ul{
    height: 131px;
    border-bottom: 1px solid #cccccc;
 }
-.items1 input{
+.items1 input[type=checkbox]{
     float: left;
     margin-left: 19px;
     width: 15px;
