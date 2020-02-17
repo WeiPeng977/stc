@@ -19,10 +19,7 @@
 		<div class="nav">
 			<span>宝贝</span>
 			<ul>
-				<li style="padding-left: 153px;">单价</li>
-				<li style="padding-left: 46px;">数量</li>
-				<li style="padding-left: 27px;">商品操作</li>
-				<li style="padding-left: 51px;">实付款</li>
+				<li style="padding-left: 390px;">实付款</li>
 				<li style="padding-left: 54px;">交易状态</li>
 				<li style="padding-left: 49px;">交易操作</li>
 			</ul>
@@ -35,10 +32,10 @@
 				<span><a href="" style="padding-left: 440px;color: black">删除订单</a></span>
 			</div>
 		   <div class="order_left">
-				 <div class="goods"><img src=""><p class="goodstitle">商品名称</p></div>
-          {$vo.goods_ids.0? "":"<p>0</p>"}
-					{$vo.goods_ids.1? $vo.goods_ids.1:"false"}
-				 <div class="goods"><img src=""><p class="goodstitle">商品名称</p></div>
+				 <div class="goods"><img src="{$vo.goods_ids.0.gid? $vo.goods_ids.0.img:""}" ><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.0.gid? $vo.goods_ids.0.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.0.gid?"￥":""}{$vo.goods_ids.0.gid? $vo.goods_ids.0.price:""}</p></div></div>
+			   <div class="goods"><img src="{$vo.goods_ids.1.gid? $vo.goods_ids.1.img:""}" ><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.1.gid? $vo.goods_ids.1.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.1.gid?"￥":""}{$vo.goods_ids.1.gid? $vo.goods_ids.1.price:""}</p></div></div>
+				 <div class="goods"><img src="{$vo.goods_ids.2.gid? $vo.goods_ids.2.img:""}"><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.2.gid? $vo.goods_ids.2.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.2.gid?"￥":""}{$vo.goods_ids.2.gid? $vo.goods_ids.2.price:""}</p></div></div>
+				 <div class="goods"><img src="{$vo.goods_ids.3.gid? $vo.goods_ids.3.img:""}"><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.3.gid? $vo.goods_ids.3.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.3.gid?"￥":""}{$vo.goods_ids.3.gid? $vo.goods_ids.3.price:""}</p></div></div>
 			</div>
 
 				<div class="order_right">

@@ -15,9 +15,13 @@ class Order extends BaseAdmin
     		$data['wd'] && $where = 'title like "%'.$data['wd'].'%"';
         $where['user_id'] = $uid;
     		$data['data'] = $this->db->table('order')->where($where)->order('oid desc')->pages($data['pageSize']);
-        $data['data']['lists'][0]['goods_ids']= explode(",",$data['data']['lists'][0]['goods_ids']);
-        $data['data']['lists'][1]['goods_ids']= explode(",",$data['data']['lists'][1]['goods_ids']);
-        var_dump($data['data']);
+
+        for($i=0;$i<count($data['data']['lists']);$i++){
+          $data['data']['lists'][$i]['goods_ids'] = explode(",",$data['data']['lists'][$i]['goods_ids']);
+          for($j=0;$j<count($data['data']['lists'][$i]['goods_ids']);$j++){
+            $data['data']['lists'][$i]['goods_ids'][$j] = $this->db->table('goods')->where(array('gid'=>$data['data']['lists'][$i]['goods_ids'][$j]))->item();
+          }
+        }
         $this->assign('data',$data);
         return $this->fetch();
     }
