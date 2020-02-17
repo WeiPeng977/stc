@@ -27,54 +27,58 @@ class Order extends BaseAdmin
     }
     public function add()
     {
-        $allstr = (String)input('get.allstr');
-        $numstr = (String)input('get.numstr');
+        $num = (String)input('get.num');
+        $nums = explode(",",$num);
+        // $allstr = (String)input('get.allstr');
+        // $numstr = (String)input('get.numstr');
         $gid = (String)input('get.gid');
-        $allstrs = explode(",",$allstr);
-        $numstrs = explode(",",$numstr);
+        // $allstrs = explode(",",$allstr);
+        // $numstrs = explode(",",$numstr);
         $gids = explode(",",$gid);
         $length = count($gids);
-        $sequence = []; //商品所在当前页面中的次序
-        $num = [];
+        // $sequence = []; //商品所在当前页面中的次序
+        // $num = [];
+        //
+        // for($j=0;$j<$length;$j++){
+        //   for($i=0;$i<4;$i++){
+        //     if($allstrs[$i] == $gids[$j]){
+        //       $sequence[] = $i + 1;
+        //     }
+        //   }
+        // }
+        //
+        // for($i=0;$i<count($gids);$i++){
+        //   $num[] = $numstrs[$sequence[$i]];
+        // }
 
-        for($j=0;$j<$length;$j++){
-          for($i=0;$i<4;$i++){
-            if($allstrs[$i] == $gids[$j]){
-              $sequence[] = $i + 1;
-            }
-          }
-        }
-
-        for($i=0;$i<count($gids);$i++){
-          $num[] = $numstrs[$sequence[$i]];
-        }
-
-       $data['num'] = $num;
-       var_dump($num);
+       // $data['num'] = $num;
 
 
 
         $price = 0;
         for($i=0;$i<$length;$i++){
             $goods[$i] = $this->db->table('goods')->where(array('gid'=>$gids[$i]))->item();
-            $price = $price + $goods[$i]['price'];
+            $goods[$i]['num'] = $nums[$i];
+            $goods[$i]['total'] = $nums[$i]*$goods[$i]['price'];
+            $price = $price + $goods[$i]['total'];
         }
-        
+        $data['num'] = $num;
         $data['gid'] = $gid;
         $data['goods'] = $goods;
         $data['price'] = $price;
+        // var_dump($goods);
         $this->assign('data',$data);
-        $this->view->engine->layout(false);
         return $this->fetch();
     }
     public function save(){
+      $data['goods_nums'] = trim(input('post.num'));
       $data['user_id'] = (int)input('post.uid');
       $data['goods_ids'] = trim(input('post.gid'));
       $data['receiver'] = trim(input('post.receiver'));
       $data['phone'] = trim(input('post.phone'));
       $data['price'] = trim(input('post.price'));
       $data['address'] = trim(input('post.address'));
-
+      // exit(json_encode(array('code'=>1,'msg'=>$data['goods_nums'])));
       if($data['user_id'] == ''){
         exit(json_encode(array('code'=>1,'msg'=>'用户id不能为空')));
       }

@@ -40,8 +40,8 @@
 				<img src="__STATIC__/images/item.jpg">
 				<span><a href="/index.php/index/Goods/goodsDetails?goods_id={$vo.gid}">{$vo.title}</a></span>
 				<div class="right">
-					<span>￥{$vo.price}</span>
-				<span><input type="number" name="num" value="0"; style="width:40px;"></span>
+				<span>￥{$vo.price}</span>
+				<span><input type="number" name="num" min="0" value="0"; style="width:40px;"></span>
 				<span class="price">￥1199.00</span>
 				<span class="delete"><a href="javascript:void(0);" onclick="del({$vo.cid})">删除</a></span>
 				</div>
@@ -106,19 +106,26 @@
 
 
     var length = id_array.length;
+    var sequence = new Array();
+    var num = new Array();
     for(i=0;i<length;i++){
       for(j=0;j<4;j++){
-        
+          if(all_goods[j] == id_array[i]){
+            sequence.push(j);
+          }
       }
     }
-    alert(length);
+
+    for(i=0;i<length;i++){
+        num.push(num_array[sequence[i]]);
+    }
 
     layer.open({
 			type: 2,
 			title: '生成订单',
 			shade: 0.3,
 			area: ['800px', '500px'],
-			content: '/index.php/index/Order/add?gid='+ chapterstr + '&allstr=' + allstr + '&numstr=' + numstr
+			content: '/index.php/index/Order/add?gid='+ chapterstr + '&allstr=' + allstr + '&numstr=' + numstr + '&num=' + num
 		});
   }
   //删除

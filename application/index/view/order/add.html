@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
 	<script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
 	<style>
-	img[src=""],img:not([src]){
+	 img[src=""],img:not([src]){
 					 opacity:0;
 			}
 	</style>
@@ -21,10 +21,15 @@
 		<span>{$good.title}</span>
 		<br/>
 		<span>{$good.price?"￥":""}{$good.price}</span>
+		<br/>
+		<span>{$good.num}</span>
+		<br/>
+		<span>{$good.total?"￥":""}{$good.total}</span>
 	  </div>
 		{/volist}
   	</br></br></br></br></br>
 		<span style="margin-left:68px; line-height:50px; font-size:15px">总价&nbsp&nbsp&nbsp￥{$data.price}</span>
+    <input type="hidden" name="num" value="{$data.num}">
 		<input type="hidden" name="gid" value="{$data.gid}">
 		<input type="hidden" name="price" value="{$data.price}">
 		<input type="hidden" name="uid" value={$Think.session.user.uid}>
@@ -64,6 +69,7 @@
 
 	// 保存
 	function save(){
+		var num = $.trim($('input[name="num"]').val());
 		var gid = $.trim($('input[name="gid"]').val());
 		var receiver = $.trim($('input[name="receiver"]').val());
 		var phone = $.trim($('input[name="phone"]').val());
