@@ -33,6 +33,8 @@ class Goods extends Controller
         $data['user'] = session('user');
         $data['goods_id'] = (int)input('get.goods_id');
         $data['data'] = $this->db->table('goods')->where(array('gid'=>$data['goods_id']))->item();
+        $data['location']['gdetail_right'] = $this->db->table('slide')->where(array('location'=>'gdetail_right'))->item();
+        // var_dump($data['location']['gdetail_right']);
         $this->assign('data',$data);
         return $this->fetch();
     }
