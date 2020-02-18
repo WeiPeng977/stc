@@ -7,7 +7,7 @@ class Order extends BaseAdmin
     public function order()
     {
         $uid = session('user.uid');
-        $data['pageSize'] = 2;
+        $data['pageSize'] = 3;
     		$data['page'] = max(1,(int)input('get.page'));
 
     		$data['wd'] = trim(input('get.wd'));
