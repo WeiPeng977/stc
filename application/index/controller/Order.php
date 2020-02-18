@@ -105,4 +105,12 @@ class Order extends BaseAdmin
       $this->db->table('order')->where(array('oid'=>$oid))->update($data);
       exit(json_encode(array('code'=>0,'msg'=>'付款成功')));
     }
+
+    //订单详情
+    public function details(){
+      $oid = (int)input('get.oid');
+      $data['item'] =$this->db->table('order')->where(array('oid'=>$oid))->item();
+      $this->assign('data',$data);
+      return $this->fetch();
+    }
 }

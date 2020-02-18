@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>编辑订单</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
+	<script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
+</head>
+<body style="padding: 10px;">
+	<form class="layui-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">订单ID</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="oid" value="{$data.item.oid}" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">收货人</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="receiver" value="{$data.item.receiver}" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">联系方式</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="phone" value="{$data.item.phone}" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">收货地址</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="address" value="{$data.item.address}" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">价格</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="price" value="{$data.item.price}" readonly>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

@@ -32,14 +32,14 @@
 				<span><a href="" style="padding-left: 440px;color: black">删除订单</a></span>
 			</div>
 		   <div class="order_left">
-				 <div class="goods"><img src="{$vo.goods_ids.0.gid? $vo.goods_ids.0.img:""}" ><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.0.gid? $vo.goods_ids.0.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.0.gid?"￥":""}{$vo.goods_ids.0.gid? $vo.goods_ids.0.price:""}</p></div></div>
-			   <div class="goods"><img src="{$vo.goods_ids.1.gid? $vo.goods_ids.1.img:""}" ><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.1.gid? $vo.goods_ids.1.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.1.gid?"￥":""}{$vo.goods_ids.1.gid? $vo.goods_ids.1.price:""}</p></div></div>
+				 <div class="goods"><img src="{$vo.goods_ids.0.gid? $vo.goods_ids.0.img:""}"><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.0.gid? $vo.goods_ids.0.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.0.gid?"￥":""}{$vo.goods_ids.0.gid? $vo.goods_ids.0.price:""}</p></div></div>
+			   <div class="goods"><img src="{$vo.goods_ids.1.gid? $vo.goods_ids.1.img:""}"><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.1.gid? $vo.goods_ids.1.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.1.gid?"￥":""}{$vo.goods_ids.1.gid? $vo.goods_ids.1.price:""}</p></div></div>
 				 <div class="goods"><img src="{$vo.goods_ids.2.gid? $vo.goods_ids.2.img:""}"><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.2.gid? $vo.goods_ids.2.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.2.gid?"￥":""}{$vo.goods_ids.2.gid? $vo.goods_ids.2.price:""}</p></div></div>
 				 <div class="goods"><img src="{$vo.goods_ids.3.gid? $vo.goods_ids.3.img:""}"><div class="titleprice"><p class="goodstitle">{$vo.goods_ids.3.gid? $vo.goods_ids.3.title:""}</p><br/><p class="goodsprice">{$vo.goods_ids.3.gid?"￥":""}{$vo.goods_ids.3.gid? $vo.goods_ids.3.price:""}</p></div></div>
 			</div>
 
 				<div class="order_right">
-					<div class="status"><span style="font-weight: bold;">￥{$vo.price}</span></div>
+					<div class="status"><span style="font-weight: bold;">￥{$vo.price}</br></br><button class="layui-btn layui-btn-xs" onclick="details({$vo.oid})">订单详情</button></span></div>
 					<div class="status"><span>
 						  {switch name="vo.status"}
 	            {case value="0"}待付款{/case}
@@ -78,6 +78,16 @@
 					}
 				});
 			});
+      //订单详情
+			function details(oid){
+				layer.open({
+					type: 2,
+					title: '订单详情',
+					shade: 0.3,
+					area: ['800px', '500px'],
+					content: '/index.php/index/order/details?oid='+oid
+				});
+			}
 			//确认收货
 			function confirm(oid){
 				layer.confirm('确定确认收货吗？', {
