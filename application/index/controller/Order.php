@@ -90,4 +90,11 @@ class Order extends BaseAdmin
 
       exit(json_encode(array('code'=>0,'msg'=>'订单创建成功')));
     }
+    //确定确认收货
+    public function confirm(){
+      $oid = (int)input('post.oid');
+      $data['status'] = 3;
+      $this->db->table('order')->where(array('oid'=>$oid))->update($data);
+      exit(json_encode(array('code'=>0,'msg'=>'确认收货成功')));
+    }
 }

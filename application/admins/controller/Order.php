@@ -32,25 +32,50 @@ class Order extends BaseAdmin{
 	}
 
 	public function save(){
-		$gid = (int)input('post.gid');
-		$data['title'] = trim(input('post.title'));
-		$data['type_id'] = (int)input('post.type_id');
-		$data['img'] = trim(input('post.img'));
+		$oid = (int)input('post.oid');
+		$data['receiver'] = trim(input('post.receiver'));
+		$data['phone'] = trim(input('post.phone'));
+		$data['address'] = trim(input('post.address'));
 		$data['price'] = trim(input('post.price'));
-		$data['stock'] = trim(input('post.stock'));
-		$data['desc'] = trim(input('post.desc'));
-		$data['status'] = (int)input('post.status');
+		if($data['receiver'] == ''){
+			exit(json_encode(array('code'=>1,'msg'=>'收货人不能为空')));
+		}
+		if($data['phone'] == ''){
+			exit(json_encode(array('code'=>1,'msg'=>'电话号码不能为空')));
+		}
+		if($data['address'] == ''){
+			exit(json_encode(array('code'=>1,'msg'=>'收货地址不能为空')));
+		}
+		if($data['price'] == ''){
+			exit(json_encode(array('code'=>1,'msg'=>'价格不能为空')));
+		}
+			$this->db->table('order')->where(array('oid'=>$oid))->update($data);
 
-		if($data['title'] == ''){
-			exit(json_encode(array('code'=>1,'msg'=>'商品名称不能为空')));
+				exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
+	}
+	// 发货
+	public function express(){
+
+		$oid = (int)input('get.oid');
+
+		$data['item'] = $this->db->table('order')->where(array('oid'=>$oid))->item();
+
+		$this->assign('data',$data);
+		return $this->fetch();
+	}
+	public function express_save(){
+		// exit(json_encode(array('code'=>0,'msg'=>"test")));
+		$oid = trim(input('post.oid'));
+		$data['express'] = trim(input('post.express'));
+		$data['status'] = 2;
+
+		if($data['express'] == ''){
+			exit(json_encode(array('code'=>1,'msg'=>'快递单号不能为空')));
 		}
-		if($gid){
-			$this->db->table('goods')->where(array('gid'=>$gid))->update($data);
-		}else{
-			$data['add_time'] = time();
-			$this->db->table('goods')->insert($data);
-		}
-		exit(json_encode(array('code'=>0,'msg'=>'保存成功')));
+
+	  $this->db->table('order')->where(array('oid'=>$oid))->update($data);
+
+		exit(json_encode(array('code'=>0,'msg'=>'提交成功')));
 	}
 
 

@@ -97,6 +97,16 @@
 			content: '/admins.php/admins/order/add?oid='+oid
 		});
 	}
+	// 发货
+	function express(oid){
+		layer.open({
+			type: 2,
+			title: '发货',
+			shade: 0.3,
+			area: ['800px', '500px'],
+			content: '/admins.php/admins/order/express?oid='+oid
+		});
+	}
 
 	// 删除
 	function del(oid){

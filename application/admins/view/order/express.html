@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>发货</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
+	<script type="text/javascript" src="__STATIC__/plugins/layui/layui.js"></script>
+</head>
+<body style="padding: 10px;">
+	<form class="layui-form">
+		<div class="layui-form-item">
+			<label class="layui-form-label">订单ID</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="oid" value="{$data.item.oid}" readonly>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">快递单号</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="express">
+			</div>
+		</div>
+	</form>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button class="layui-btn" onclick="express_save()">保存</button>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	layui.use(['form','layer'],function(){
+		$ = layui.jquery;
+		var form = layui.form;
+		layer = layui.layer;
+
+
+	});
+
+	// 保存
+	function express_save(){
+		var express = $.trim($('input[name="express"]').val());
+		if(express == ''){
+			layer.msg('请输入订单号',{'icon':2,'anim':6});
+			return;
+		}
+		$.post('/admins.php/admins/order/express_save',$('form').serialize(),function(res){
+			if(res.code>0){
+				layer.msg(res.msg,{'icon':2,'anim':2});
+			}else{
+				layer.msg(res.msg,{'icon':1});
+				setTimeout(function(){parent.window.location.reload();},1000);
+			}
+		},'json');
+	}
+</script>
