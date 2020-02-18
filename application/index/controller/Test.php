@@ -10,8 +10,7 @@ class Test extends Controller
 		$this->db = new Sysdb;
 	}
     public function index()
-    {
-      
+    {  
       return $this->fetch();
     }
 

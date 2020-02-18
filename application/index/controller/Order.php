@@ -97,4 +97,12 @@ class Order extends BaseAdmin
       $this->db->table('order')->where(array('oid'=>$oid))->update($data);
       exit(json_encode(array('code'=>0,'msg'=>'确认收货成功')));
     }
+
+    //确定付款
+    public function pay(){
+      $oid = (int)input('post.oid');
+      $data['status'] = 1;
+      $this->db->table('order')->where(array('oid'=>$oid))->update($data);
+      exit(json_encode(array('code'=>0,'msg'=>'付款成功')));
+    }
 }

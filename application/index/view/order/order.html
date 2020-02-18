@@ -44,12 +44,12 @@
 						  {switch name="vo.status"}
 	            {case value="0"}待付款{/case}
 	            {case value="1"}待发货{/case}
-							{case value="2"}待收货{/case}
+							{case value="2"}待收货</br>快递单号</br>{$vo.express}{/case}
 							{case value="3"}交易完成{/case}
 	            {/switch}</span></div>
 					<div class="status"><span>
 						  {switch name="vo.status"}
-	            {case value="0"}<button class="layui-btn layui-btn-xs" onclick="add({$vo.oid})">付款</button>{/case}
+	            {case value="0"}<button class="layui-btn layui-btn-xs" onclick="pay({$vo.oid})">付款</button>{/case}
 	            {case value="1"}{/case}
 							{case value="2"}<button class="layui-btn layui-btn-xs" onclick="confirm({$vo.oid})">确认收货</button>{/case}
 							{case value="3"}{/case}
@@ -94,6 +94,24 @@
 					},'json');
 				});
 			}
+
+			//确认收货
+			function pay(oid){
+				layer.confirm('确定付款吗？', {
+					icon:3,
+					btn: ['确定','取消']
+				}, function(){
+					$.post('/index.php/index/order/pay',{'oid':oid},function(res){
+						if(res.code>0){
+							layer.alert(res.msg,{icon:2});
+						}else{
+							layer.msg(res.msg);
+							setTimeout(function(){window.location.reload();},1000);
+						}
+					},'json');
+				});
+			}
+
 
 
 			// 搜索
