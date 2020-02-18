@@ -40,8 +40,20 @@
 
 				<div class="order_right">
 					<div class="status"><span style="font-weight: bold;">￥{$vo.price}</span></div>
-					<div class="status"><span><a href="" style="color: black;">交易成功<br>订单详情</a></span></div>
-					<div class="status"></div>
+					<div class="status"><span>
+						  {switch name="vo.status"}
+	            {case value="0"}待付款{/case}
+	            {case value="1"}待发货{/case}
+							{case value="2"}待收货{/case}
+							{case value="3"}交易完成{/case}
+	            {/switch}</span></div>
+					<div class="status"><span>
+						  {switch name="vo.status"}
+	            {case value="0"}<button class="layui-btn layui-btn-xs" onclick="add({$vo.oid})">付款</button>{/case}
+	            {case value="1"}{/case}
+							{case value="2"}<button class="layui-btn layui-btn-xs" onclick="add({$vo.oid})">确认收货</button>{/case}
+							{case value="3"}{/case}
+	            {/switch}</span></div>
 				</div>
 		</div>
 		{/volist}

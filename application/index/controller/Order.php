@@ -47,6 +47,7 @@ class Order extends BaseAdmin
           $data['gid'] = $gid;
           $data['goods'] = $goods;
           $data['price'] = $price;
+
           $this->assign('data',$data);
           return $this->fetch();
         }else{
@@ -84,6 +85,7 @@ class Order extends BaseAdmin
       }
 
       $data['add_time'] = time();
+      $data['status'] = "0";
       $this->db->table('order')->insert($data);
 
       exit(json_encode(array('code'=>0,'msg'=>'订单创建成功')));

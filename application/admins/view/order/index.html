@@ -46,11 +46,21 @@
 				<td>{$vo.phone}</td>
 				<td>{$vo.address}</td>
 				<td>￥{$vo.price}</td>
-        <td>{$vo.status}</td>
+        <td>{switch name="vo.status"}
+            {case value="0"}待付款{/case}
+            {case value="1"}待发货{/case}
+						{case value="2"}待收货{/case}
+						{case value="3"}交易完成{/case}
+            {/switch}</td>
 				<td>{:date('Y-m-d H:i:s',$vo.add_time)}</td>
 				<td>
 					<button class="layui-btn layui-btn-xs" onclick="add({$vo.oid})">编辑</button>
-					<button class="layui-btn layui-btn-danger layui-btn-xs" onclick="del({$vo.oid})">删除</button>
+					{switch name="vo.status"}
+	            {case value="0"}{/case}
+	            {case value="1"}<button class="layui-btn layui-btn-xs" onclick="express({$vo.oid})">发货</button>{/case}
+							{case value="2"}{/case}
+							{case value="3"}交易完成{/case}
+	            {/switch}
 				</td>
 			</tr>
 			{/volist}
