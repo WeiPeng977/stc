@@ -34,7 +34,7 @@
 		</div>
 		<div class="fee" style="margin-top: 30px;">
 			<span>数量</span>
-			<span style="padding-left: 49px;">-&nbsp;&nbsp;0&nbsp;&nbsp;+</span>
+			<span style="padding-left: 49px;"><input type="number" name="num" min="1" value="1"></span>
 		</div>
 		<input type="hidden" id="uid" value="{$data.user.uid}">
 		<input type="hidden" id="goods_id" value="{$data.goods_id}">
@@ -55,19 +55,21 @@
 
 	function order(){
     var goods_id = $.trim($('#goods_id').val());
+		var num = $.trim($('input[name="num"]').val());
     layer.open({
 			type: 2,
 			title: '生成订单',
 			shade: 0.3,
 			area: ['800px', '500px'],
-			content: '/index.php/index/Order/add?gid='+ goods_id
+			content: '/index.php/index/Order/add?gid='+ goods_id + '&num=' + num
 		});
   }
 
 function doput(){
   var uid = $.trim($('#uid').val());
   var goods_id = $.trim($('#goods_id').val());
-  $.post('/index.php/index/Cart/doput',{'uid':uid,'goods_id':goods_id},function(res){
+	var num = $.trim($('input[name="num"]').val());
+  $.post('/index.php/index/Cart/doput',{'uid':uid,'goods_id':goods_id,'num':num},function(res){
     if(res.code>0){
       layer.alert(res.msg,{icon:2});
 

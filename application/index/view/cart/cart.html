@@ -1,6 +1,8 @@
 {layout name="layout"/}
 <link rel="stylesheet" type="text/css" href="__STATIC__/css/cart.css">
 <link rel="stylesheet" type="text/css" href="__STATIC__/plugins/layui/css/layui.css">
+<script type="text/javascript" src="__STATIC__/js/jquery-1.8.3.min.js"></script>
+
 <!--搜索栏的实现-->
 <div class="search w">
     <div class="left"><p>购物车</p></div>
@@ -20,7 +22,7 @@
 	</div>
 	<div class="goods">
 		<div class="goods_left">
-			<input type="checkbox" name=""><span style="margin-left:5px;">全选</span>
+			<!-- <input type="checkbox" id="allcheckbox"><span style="margin-left:5px;">全选</span> -->
 			<span>商品信息</span>
 		</div>
 		<div class="goods_right">
@@ -41,8 +43,8 @@
 				<span><a href="/index.php/index/Goods/goodsDetails?goods_id={$vo.gid}">{$vo.title}</a></span>
 				<div class="right">
 				<span>￥{$vo.price}</span>
-				<span><input type="number" name="num" min="0" value="0"; style="width:40px;"></span>
-				<span class="price">￥1199.00</span>
+				<span><input type="number" name="num" min="1" value="{$vo.num}"; style="width:40px;"></span>
+				<span class="price">￥{$vo.price*$vo.num}</span>
 				<span class="delete"><a href="javascript:void(0);" onclick="del({$vo.cid})">删除</a></span>
 				</div>
 
@@ -55,9 +57,9 @@
   <div id="pages"></div>
 	<div class="settlement">
 		<div class="left">
-		<input type="checkbox" name=""><span style="margin-left: 5px;"><a>全选</a></span>
+		<input type="checkbox" id="allcheckbox"><span style="margin-left: 5px;"><a>全选</a></span>
 		<a style="margin-left: 40px;">删除</a>
-		<span style="margin-left: 380px;">已选商品&nbsp<span class="blue">0</span>&nbsp件</span>
+		<!-- <span style="margin-left: 380px;">已选商品&nbsp<span class="blue">0</span>&nbsp件</span> -->
 		<span style="margin-left:115px;">合计：<span class="blue">0.00</span></span>
 	  </div>
 		<input type="button" class="right" onclick="order()" value="结算">
@@ -82,6 +84,17 @@
 			}
 		});
 	});
+
+
+  $(function() {
+          $("#allcheckbox").click(function() {
+              $(":checkbox[name='goods']").prop("checked", this.checked); // this指代的你当前选择的这个元素的JS对象
+          });
+
+          
+      });
+
+
 
   //结算
   function order(){
@@ -119,7 +132,6 @@
     for(i=0;i<length;i++){
         num.push(num_array[sequence[i]]);
     }
-
     layer.open({
 			type: 2,
 			title: '生成订单',

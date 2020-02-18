@@ -28,47 +28,32 @@ class Order extends BaseAdmin
     public function add()
     {
         $num = (String)input('get.num');
+
         $nums = explode(",",$num);
-        // $allstr = (String)input('get.allstr');
-        // $numstr = (String)input('get.numstr');
         $gid = (String)input('get.gid');
-        // $allstrs = explode(",",$allstr);
-        // $numstrs = explode(",",$numstr);
         $gids = explode(",",$gid);
         $length = count($gids);
-        // $sequence = []; //商品所在当前页面中的次序
-        // $num = [];
-        //
-        // for($j=0;$j<$length;$j++){
-        //   for($i=0;$i<4;$i++){
-        //     if($allstrs[$i] == $gids[$j]){
-        //       $sequence[] = $i + 1;
-        //     }
-        //   }
-        // }
-        //
-        // for($i=0;$i<count($gids);$i++){
-        //   $num[] = $numstrs[$sequence[$i]];
-        // }
-
-       // $data['num'] = $num;
-
-
 
         $price = 0;
-        for($i=0;$i<$length;$i++){
-            $goods[$i] = $this->db->table('goods')->where(array('gid'=>$gids[$i]))->item();
-            $goods[$i]['num'] = $nums[$i];
-            $goods[$i]['total'] = $nums[$i]*$goods[$i]['price'];
-            $price = $price + $goods[$i]['total'];
+        if($gid){
+          for($i=0;$i<$length;$i++){
+              $goods[$i] = $this->db->table('goods')->where(array('gid'=>$gids[$i]))->item();
+              $goods[$i]['num'] = $nums[$i];
+              $goods[$i]['total'] = $nums[$i]*$goods[$i]['price'];
+              $price = $price + $goods[$i]['total'];
+
+          }
+          $data['num'] = $num;
+          $data['gid'] = $gid;
+          $data['goods'] = $goods;
+          $data['price'] = $price;
+          $this->assign('data',$data);
+          return $this->fetch();
+        }else{
+          return "请选择商品";
         }
-        $data['num'] = $num;
-        $data['gid'] = $gid;
-        $data['goods'] = $goods;
-        $data['price'] = $price;
-        // var_dump($goods);
-        $this->assign('data',$data);
-        return $this->fetch();
+
+         // var_dump($goods);
     }
     public function save(){
       $data['goods_nums'] = trim(input('post.num'));

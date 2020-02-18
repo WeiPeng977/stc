@@ -8,7 +8,6 @@ class Cart extends BaseAdmin
 {
     public function cart()
     {
-
         $user_id = session('user.uid');
         $goods_id = $this->db->table('cart')->where(array('user_id'=>$user_id))->lists();
         $total = count($goods_id);
@@ -34,6 +33,8 @@ class Cart extends BaseAdmin
     }
     public function doput(){
        // exit(json_encode(array('code'=>1,'msg'=>'test')));
+       $data['num'] = trim(input('num'));
+      //exit(json_encode(array('code'=>1,'msg'=>$data['num'])));
        $data['user_id'] = trim(input('uid'));
        $data['goods_id'] = trim(input('goods_id'));
       // exit(json_encode(array('code'=>1,'msg'=>'$repwd')));
