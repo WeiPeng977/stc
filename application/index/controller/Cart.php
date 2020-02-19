@@ -15,7 +15,7 @@ class Cart extends BaseAdmin
         $data = Db::table('cart')
         ->alias('c')
         ->join('goods g','c.goods_id = g.gid')
-        ->where('user_id','5')
+        ->where('user_id',$user_id)
         ->paginate($data['pageSize'],$total);
 
         $goods['total'] = $total;
@@ -29,6 +29,7 @@ class Cart extends BaseAdmin
         $this->assign('data',$data);
         $cart['num'] = $total;
         session('cart',$cart);
+
         return $this->fetch();
     }
     public function doput(){
