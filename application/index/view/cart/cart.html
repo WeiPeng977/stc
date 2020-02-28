@@ -39,7 +39,7 @@
 			<div class="items1">
 
 			  <input type="checkbox" name="goods" value="{$vo.gid}">
-				<img src="__STATIC__/images/item.jpg">
+				<img src="{$vo.img}" style="width:80px; height:80px">
 				<span><a href="/index.php/index/Goods/goodsDetails?goods_id={$vo.gid}">{$vo.title}</a></span>
 				<div class="right">
 				<span>￥{$vo.price}</span>
@@ -91,7 +91,7 @@
               $(":checkbox[name='goods']").prop("checked", this.checked); // this指代的你当前选择的这个元素的JS对象
           });
 
-          
+
       });
 
 
