@@ -133,7 +133,8 @@ input[placeholder]{
     height: 599px;
     border: 1px solid #0054ff;
     border-top: none;
-    background-color: white;
+    /* background-color: #dce4ff; */
+    background-color: #f5f7ff;
 }
 .main .center{
     float: left;
@@ -155,20 +156,21 @@ input[placeholder]{
     background-color: white;
 }
 .main .left ul{
-    margin-top: 10px;
+    margin-top: 6px;
 }
 .main .left li{
+    line-height:65px;
     text-align: center;
-    font-size: 14px;
-    padding-bottom: 18px;
+    font-size: 15px;
+    /* border-bottom: 1px solid #0054ff; */
 }
 .main a:hover{
     background: #dce4ff;
     color: black;
     display: block;
     width: 198px;
-    height: 31px;
-    line-height: 31px;
+    height: 65px;
+    line-height: 65px;
 }
 /*底部1*/
 .bottom{
